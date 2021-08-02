@@ -18,7 +18,7 @@ export default class PollsController {
 
     /**
      * Render an empty list of polls when "pariticapted" filter is
-     * applied and user is not logged in
+     * applied and the user is not logged in
      */
     if (filterBy === 'participated' && !auth.isLoggedIn) {
       return view.render('pages/polls/index', { polls: [], filterBy })
@@ -26,7 +26,7 @@ export default class PollsController {
 
     /**
      * Get the pagination page number and make sure it is a valid number. If
-     * not a valid number, we fallback to 1
+     * not a valid number, we fallback to 1.
      */
     let page = Number(request.input('page'))
     page = isNaN(page) ? 1 : page
@@ -48,7 +48,13 @@ export default class PollsController {
      * received
      */
     const polls = await query
-      .withAggregate('options', (query) => query.sum('votes_count').as('votesCount'))
+      .withAggregate('options', (query) => {
+        /**
+         * The aggregated property "votesCount" will be available on the
+         * poll instance as "poll.$extras.votesCont".
+         */
+        query.sum('votes_count').as('votesCount')
+      })
       .orderBy('id', 'desc')
       .paginate(page, 20)
 
@@ -137,6 +143,9 @@ export default class PollsController {
      */
     const selectedOption = userParticipation ? userParticipation.$extras.pivot_option_id : null
 
+    /**
+     * Render the pages/polls/show template
+     */
     return view.render('pages/polls/show', { poll, selectedOption })
   }
 
@@ -149,7 +158,7 @@ export default class PollsController {
     /**
      * Fetch the poll instance
      */
-    const poll = await Poll.query().where('slug', request.param('slug')).firstOrFail()
+    const poll = await Poll.findOrFail(request.param('id'))
 
     /**
      * Return early when user is trying to vote on an expired poll. The UI
@@ -168,7 +177,7 @@ export default class PollsController {
     const userParticipation = await auth
       .user!.related('participations')
       .query()
-      .where('poll_id', poll.id)
+      .wherePivot('poll_id', poll.id)
       .first()
 
     /**
@@ -217,5 +226,27 @@ export default class PollsController {
      * Redirect back
      */
     response.redirect().back()
+  }
+
+  /**
+   * Route to delete a poll by its id
+   */
+  public async destroy({ request, response, auth }: HttpContextContract) {
+    const poll = await Poll.find(request.param('id'))
+
+    /**
+     * Silently ignore requests trying to delete a non-existing
+     * or a poll not owned by them
+     */
+    if (!poll || poll.userId !== auth.user?.id) {
+      response.redirect('/')
+      return
+    }
+
+    /**
+     * Delete poll and redirect
+     */
+    await poll.delete()
+    response.redirect('/')
   }
 }

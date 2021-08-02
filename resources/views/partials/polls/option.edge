@@ -1,5 +1,11 @@
 <div class="relative py-1 pl-2 pr-4 mb-2 flex justify-between items-center">
-  {{-- The progress bar --}}
+  {{--
+    The progress bar.
+
+    The variable "displayResults" is defined inside the
+    parent template "pages/polls/show". Since this template is a partial,
+    it can access the parent state.
+  --}}
   @if(displayResults)
     <span
       class="absolute bg-gray-100 left-0 top-0 bottom-0 rounded-lg"
@@ -21,7 +27,13 @@
     <label for="{{ option.id }}" class="text-lg text-gray-800 ml-3">{{ option.title }}</label>
   </div>
 
-  {{-- Percentage of votes in plain text --}}
+  {{--
+    Percentage of votes in plain text.
+
+    The variable "displayResults" is defined inside the
+    parent template "pages/polls/show". Since this template is a partial,
+    it can access the parent state.
+  --}}
   @if(displayResults)
     <span class="text-lg text-gray-800 ml-3 relative">
       {{ option.votePercentage(poll.$extras.votesCount) }}%

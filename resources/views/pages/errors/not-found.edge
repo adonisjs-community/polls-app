@@ -1,0 +1,21 @@
+@layout('layouts/master')
+@set('title', '404 - Page not found')
+
+@section('body')
+  <div class="max-w-xl mx-auto py-32 text-center">
+  	<div>
+  		<h2 class="section-title">404. Page not found</h2>
+  		<p class="section-subtitle">
+  			The page you are looking for does not exists. Click the following button to discover the polls.
+  		</p>
+  	</div>
+
+  	<div class="mt-12">
+      @!button({
+        style: 'secondary',
+        href: route('PollsController.index'),
+        title: 'Discover all polls'
+      })
+    </div>
+  </div>
+@end

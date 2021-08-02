@@ -21,6 +21,11 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 /**
+ * All params named ":id" should be valid numbers.
+ */
+Route.where('id', Route.matchers.number())
+
+/**
  * Signup, login and logout routes
  */
 Route.get('signup', 'SignupController.create').middleware('guest')
@@ -36,7 +41,7 @@ Route.post('logout', 'LoginController.destroy').middleware('auth')
 Route.get('/', 'PollsController.index')
 
 /**
- * View self profile "/me" is a convention to show details
+ * View self profile. "/me" is a convention to show details
  * for the currently loggedin user
  */
 Route.get('/me', 'ProfileController.index').middleware('auth')
@@ -48,4 +53,5 @@ Route.get('/me', 'ProfileController.index').middleware('auth')
 Route.get('polls/create', 'PollsController.create').middleware('auth')
 Route.post('polls', 'PollsController.store').middleware('auth')
 Route.get('polls/:slug', 'PollsController.show')
-Route.post('polls/:slug/vote', 'PollsController.submitVote').middleware('auth')
+Route.post('polls/:id/vote', 'PollsController.submitVote').middleware('auth')
+Route.delete('polls/:id', 'PollsController.destory')

@@ -23,6 +23,19 @@
   )
 @end
 
+{{--
+  Classes for the danger button
+--}}
+@if(style === 'danger')
+  @set(
+    'classes',
+    'bg-red-600 shadow py-2 px-8 rounded-md text-white font-semibold hover:bg-teal-700'
+  )
+@end
+
+{{--
+  Classes to concatenate for the large size button
+--}}
 @if(size === 'large')
   @set('classes', `${classes} text-lg`)
 @end

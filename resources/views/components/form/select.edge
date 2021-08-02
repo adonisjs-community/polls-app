@@ -16,9 +16,9 @@
   name: $context.name
 }, false)
 }}>
-@each(option in options)
-  <option value="{{ option.value }}" {{ oldValue == option.value ? 'selected' : '' }}>
-    {{ option.text }}
-  </option>
-@end
+  @each(option in options)
+    <option value="{{ option.value }}" {{ oldValue == option.value ? 'selected' : '' }}>
+      {{ option.text }}
+    </option>
+  @end
 </select>

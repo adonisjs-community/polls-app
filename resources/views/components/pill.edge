@@ -1,12 +1,17 @@
-@set('sizeClasses', 'w-12 h-12')
+{{--
+  Default set of classes
+--}}
+@set('classes', 'rounded-full flex items-center justify-center text-gray-800 font-medium')
 
-@if(style === 'large')
-  @set('sizeClasses', 'w-24 h-24 text-3xl')
+{{--
+  Concatenate size classes
+--}}
+@if(size === 'large')
+  @set('classes', `${classes} w-24 h-24 text-3xl`)
+@else
+  @set('classes', `${classes} w-12 h-12`)
 @end
 
-<div
-  class="{{ sizeClasses }} rounded-full flex items-center justify-center text-gray-800 font-medium"
-  style="background-color: {{ color }};"
->
+<div class="{{ classes }}" style="background-color: {{ color }};">
   {{ text }}
 </div>
