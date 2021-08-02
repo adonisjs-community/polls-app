@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+button:disabled {
+  opacity: 0.64;
+  cursor: not-allowed;
+}
+
+.section-title {
+  @apply text-6xl text-gray-800 mb-2 font-bold tracking-tight;
+}
+.section-subtitle {
+  @apply text-xl;
+}
+
+.tabs {
+  @apply flex border-b border-gray-300;
+}
+.tab-item {
+  @apply text-xl py-2 px-6;
+}
+.tab-item.active {
+  @apply text-gray-800 font-medium border-b-2 border-gray-800;
+}
+
+.dropdown {
+  @apply bg-white shadow-spread absolute right-0 py-2 -mr-4 min-w-240;
+  margin-top: 8px;
+}
+.dropdown_item {
+  @apply px-4 py-2 block whitespace-nowrap border-2 border-white hover:bg-gray-50 hover:text-gray-800 hover:border-teal-600;
+}

@@ -1,0 +1,30 @@
+<div class="relative py-1 pl-2 pr-4 mb-2 flex justify-between items-center">
+  {{-- The progress bar --}}
+  @if(displayResults)
+    <span
+      class="absolute bg-gray-100 left-0 top-0 bottom-0 rounded-lg"
+      style="width: {{ option.votePercentage(poll.$extras.votesCount) }}%;"
+    ></span>
+  @end
+
+  {{-- Display the radio button --}}
+  <div class="flex items-center relative">
+    <div class="mt-1.5">
+      @!form.input({
+        type: 'radio',
+        value: option.id,
+        id: option.id,
+        checked: selectedOption === option.id,
+        disabled: disableSubmission
+      })
+    </div>
+    <label for="{{ option.id }}" class="text-lg text-gray-800 ml-3">{{ option.title }}</label>
+  </div>
+
+  {{-- Percentage of votes in plain text --}}
+  @if(displayResults)
+    <span class="text-lg text-gray-800 ml-3 relative">
+      {{ option.votePercentage(poll.$extras.votesCount) }}%
+    </span>
+  @end
+</div>

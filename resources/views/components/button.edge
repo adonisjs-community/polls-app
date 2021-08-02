@@ -1,0 +1,49 @@
+{{-- Styling for the default button --}}
+@set('classes', 'py-2 px-8 text-gray-500 font-semibold hover:text-gray-800')
+
+{{--
+  Classes for the minor button. It overrides any other classes defined
+  earlier.
+--}}
+@if(style === 'secondary')
+  @set(
+    'classes',
+    'bg-white border border-gray-200 shadow py-2 px-8 rounded-md text-gray-500 font-semibold hover:bg-gray-50 hover:text-gray-800'
+  )
+@end
+
+{{--
+  Classes for the major button. It overrides any other classes defined
+  earlier.
+--}}
+@if(style === 'primary')
+  @set(
+    'classes',
+    'bg-teal-600 shadow py-2 px-8 rounded-md text-white font-semibold hover:bg-teal-700'
+  )
+@end
+
+@if(size === 'large')
+  @set('classes', `${classes} text-lg`)
+@end
+
+{{--
+  Use anchor tag when href is provided. Otherwise use the button element
+--}}
+@if(href)
+  <a {{ $props.serializeExcept(['style', 'size'], { class: classes }, false) }}>
+    @if(title)
+      {{ title }}
+    @else
+      {{{ await $slots.main() }}}
+    @end
+  </a>
+@else
+  <button {{ $props.serializeExcept(['style', 'size'], { class: classes, type: 'submit' }, false) }}>
+    @if(title)
+      {{ title }}
+    @else
+      {{{ await $slots.main() }}}
+    @end
+  </button>
+@end

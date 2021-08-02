@@ -1,0 +1,16 @@
+{{--
+  The default set of styling classes for the input. One can pass
+  the class attribute to define their own
+--}}
+@set('classes', 'font-medium text-gray-800')
+
+<label
+  for="{{ $context.name }}"
+  {{ $props.serialize({ class: classes }, false) }}
+>
+  @if(title)
+    {{ title }}
+  @else
+    {{{ await $slots.main() }}}
+  @end
+</label>

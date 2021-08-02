@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title || 'AdonisJS Poll' }}</title>
+  @entryPointStyles('app')
+  @entryPointScripts('app')
+</head>
+
+<body class="bg-gray-50 font-sans text-base antialiased text-gray-500">
+  @include('partials/header')
+  @!section('body')
+</body>
+</html>

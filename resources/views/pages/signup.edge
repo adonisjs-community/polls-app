@@ -1,0 +1,62 @@
+@layout('layouts/master')
+
+@section('body')
+  <section class="max-w-xl mx-auto py-20">
+    <div>
+      <h2 class="section-title"> Sign Up </h2>
+      <p class="section-subtitle">
+        Create a new account to participate in polls and create your own polls
+      </p>
+    </div>
+
+    <div class="mt-16">
+      <form action="{{ route('SignupController.store') }}" method="POST">
+        <div class="mt-6">
+          @form.control({
+            name: 'fullName',
+          })
+            <div class="mb-2">
+              @!form.label({ title: 'Full Name' })
+            </div>
+            <div>
+              @!form.input()
+              @!form.error()
+            </div>
+          @end
+        </div>
+
+        <div class="mt-6">
+          @form.control({
+            name: 'email',
+          })
+            <div class="mb-2">
+              @!form.label({ title: 'Email Address' })
+            </div>
+            <div>
+              @!form.input({ type: 'email' })
+              @!form.error()
+            </div>
+          @end
+        </div>
+
+        <div class="mt-6">
+          @form.control({
+            name: 'password',
+          })
+            <div class="mb-2">
+              @!form.label({ title: 'Password' })
+            </div>
+            <div>
+              @!form.input({ type: 'password', placeholder: '6 characters or long' })
+              @!form.error()
+            </div>
+          @end
+        </div>
+
+        <div class="mt-12">
+          @!button({ title: 'Sign Up', style: 'primary', size: 'large' })
+        </div>
+      </form>
+    </div>
+  </section>
+@end

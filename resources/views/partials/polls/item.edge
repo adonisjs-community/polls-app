@@ -1,0 +1,18 @@
+<div class="flex items-center py-4 border-b border-gray-300">
+  @!pill({
+    color: poll.pollColor,
+    text: poll.$extras.votesCount > 99 ? '99+' : poll.$extras.votesCount,
+  })
+  <div class="ml-6">
+    <h3 class="mb-0.5">
+      <a
+        href="{{ route('PollsController.show', [poll.slug]) }}"
+        class="text-teal-700 text-xl"
+      >
+        {{ poll.title }}
+      </a>
+    </h3>
+
+    <p> {{ poll.expired ? 'Ended' : 'Ends' }} {{ poll.closesAt.toRelative() }} </p>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+@if(!auth.isLoggedIn)
+  <div class="flex items-center">
+    <div>
+      @!button({
+        href: route('LoginController.create'),
+        title: 'Log In'
+      })
+    </div>
+
+    <div class="ml-2">
+      @!button({
+        style: 'primary',
+        href: route('SignupController.create'),
+        title: 'Sign up'
+      })
+    </div>
+  </div>
+@else
+  <div class="relative" x-data="{ opened: false }">
+    <button @click.prevent="opened = !opened" @click.away="opened = false">
+      @!pill({ color: auth.user.profileColor, text: auth.user.initials })
+    </button>
+
+    <div class="dropdown" x-show="opened">
+      <ul>
+        <li>
+          <a href="/me" class="dropdown_item"> My profile </a>
+        </li>
+
+        <li>
+          <form action="{{ route('LoginController.destroy') }}" method="POST" x-data="{}">
+            <a
+              href="{{ route('LoginController.destroy') }}"
+              class="dropdown_item"
+              @click.prevent="(event) => event.target.closest('form').submit()"
+            >
+              Logout
+            </a>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+@end

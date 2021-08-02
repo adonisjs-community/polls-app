@@ -1,0 +1,12 @@
+@set('sizeClasses', 'w-12 h-12')
+
+@if(style === 'large')
+  @set('sizeClasses', 'w-24 h-24 text-3xl')
+@end
+
+<div
+  class="{{ sizeClasses }} rounded-full flex items-center justify-center text-gray-800 font-medium"
+  style="background-color: {{ color }};"
+>
+  {{ text }}
+</div>

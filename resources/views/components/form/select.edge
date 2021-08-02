@@ -1,0 +1,24 @@
+{{--
+  Check and see if the current selectbox has a pre-existing value inside the
+  flashMessages.
+--}}
+@set('oldValue', flashMessages.get($context.name) || '')
+
+{{--
+  The default set of styling classes for the select box. One can pass
+  the class attribute to define their own
+--}}
+@set('classes', 'border-2 border-gray-200 shadow bg-white py-3 px-4 rounded-md w-full focus:border-teal-600 focus:outline-none text-gray-800')
+
+<select {{ $props.serializeExcept(['options'], {
+  class: classes,
+  id: $context.name,
+  name: $context.name
+}, false)
+}}>
+@each(option in options)
+  <option value="{{ option.value }}" {{ oldValue == option.value ? 'selected' : '' }}>
+    {{ option.text }}
+  </option>
+@end
+</select>

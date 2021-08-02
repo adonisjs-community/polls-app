@@ -1,0 +1,43 @@
+@layout('layouts/master')
+
+{{-- Page title --}}
+@set('title', 'Discover polls')
+
+@section('body')
+  <section class="max-w-xl mx-auto pt-20">
+    <div>
+      <h2 class="section-title"> Discover Polls </h2>
+      <p class="section-subtitle">
+        Discover the trending polls, opinions and thoughts from across the world
+      </p>
+    </div>
+
+    <div class="mt-12">
+      {{-- Tabs --}}
+      <div class="tabs">
+        <a
+          href="{{ route('PollsController.index') }}"
+          class="tab-item {{ filterBy !== 'participated' ? 'active' : '' }}"
+        >
+          All
+        </a>
+
+        <a
+          href="{{ route('PollsController.index', [], { qs: { filter_by: 'participated' } }) }}"
+          class="tab-item {{ filterBy === 'participated' ? 'active' : '' }}"
+        >
+          Participated in
+        </a>
+      </div>
+
+      {{-- Polls listing --}}
+      <div class="mx-2">
+        @each(poll in polls)
+          @include('partials/polls/item')
+        @else
+          @include('partials/polls/placeholder')
+        @end
+      </div>
+    </div>
+  </section>
+@end

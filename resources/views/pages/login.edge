@@ -1,0 +1,50 @@
+@layout('layouts/master')
+
+@section('body')
+  <section class="max-w-xl mx-auto py-20">
+    <div>
+      <h2 class="section-title"> Log In </h2>
+      <p class="section-subtitle">
+        Log In to participate in polls and create your own polls
+      </p>
+    </div>
+
+    <div class="mt-16">
+      <form action="{{ route('LoginController.store') }}" method="POST">
+        <div class="mt-6">
+          @form.control({
+            name: 'email',
+            errorKey: 'auth.errors.uid'
+          })
+            <div class="mb-2">
+              @!form.label({ title: 'Email Address' })
+            </div>
+            <div>
+              @!form.input({ type: 'email' })
+              @!form.error()
+            </div>
+          @end
+        </div>
+
+        <div class="mt-6">
+          @form.control({
+            name: 'password',
+            errorKey: 'auth.errors.password'
+          })
+            <div class="mb-2">
+              @!form.label({ title: 'Password' })
+            </div>
+            <div>
+              @!form.input({ type: 'password' })
+              @!form.error()
+            </div>
+          @end
+        </div>
+
+        <div class="mt-12">
+          @!button({ title: 'Log In', style: 'primary', size: 'large' })
+        </div>
+      </form>
+    </div>
+  </section>
+@end
