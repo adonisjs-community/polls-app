@@ -10,6 +10,9 @@
     "lint": "eslint . --ext=.ts",
     "format": "prettier --write ."
   },
+  "engines": {
+    "node": "v16.0.0"
+  },
   "devDependencies": {
     "@adonisjs/assembler": "^5.3.5",
     "@hotwired/turbo": "^7.0.0-rc.1",
