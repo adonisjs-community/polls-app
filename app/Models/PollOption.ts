@@ -26,6 +26,6 @@ export default class PollOption extends BaseModel {
    */
   public votePercentage(total: number | string) {
     total = Number(total)
-    return isNaN(total) || total === 0 ? 0 : (this.votesCount / total) * 100
+    return isNaN(total) || total === 0 ? 0 : Math.round((this.votesCount / total) * 100)
   }
 }
