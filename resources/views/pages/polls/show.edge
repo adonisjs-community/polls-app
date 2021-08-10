@@ -86,12 +86,13 @@
           </div>
 
           <div class="mt-12 flex justify-between items-center">
-            @!button({
-              title: 'Submit your vote',
-              style: 'primary',
-              size: 'large',
-              disabled: disableSubmission
-            })
+            <button
+              type="sumbit"
+              class="button button-primary button-large"
+              {{ disableSubmission ? 'disabled' : '' }}
+            >
+              Submit your vote
+            </button>
           </div>
         </div>
       </form>

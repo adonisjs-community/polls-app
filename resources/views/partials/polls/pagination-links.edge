@@ -1,0 +1,14 @@
+@if(polls.hasPages)
+  <div class="mt-12">
+    <div class="flex items-center space-x-2 justify-center">
+      @each(anchor in polls.getUrlsForRange(1, polls.lastPage))
+         <a
+          href="{{ anchor.url }}"
+          class="h-8 w-8 flex justify-around items-center rounded-full font-medium {{ anchor.isActive ? 'bg-gray-800 text-white' : 'hover:bg-gray-100 hover:text-gray-800' }}"
+        >
+          {{ anchor.page }}
+        </a>
+      @endeach
+    </div>
+  </div>
+@end

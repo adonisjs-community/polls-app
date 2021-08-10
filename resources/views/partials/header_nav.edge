@@ -1,18 +1,21 @@
 @if(!auth.isLoggedIn)
   <div class="flex items-center">
     <div>
-      @!button({
-        href: route('LoginController.create'),
-        title: 'Log In'
-      })
+      <a
+        href="{{ route('LoginController.create') }}"
+        class="button button-neutral"
+      >
+        Log In
+      </a>
     </div>
 
     <div class="ml-2">
-      @!button({
-        style: 'primary',
-        href: route('SignupController.create'),
-        title: 'Sign up'
-      })
+      <a
+        href="{{ route('SignupController.create') }}"
+        class="button button-primary"
+      >
+        Sign up
+      </a>
     </div>
   </div>
 @else

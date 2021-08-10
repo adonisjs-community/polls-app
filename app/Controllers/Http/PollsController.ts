@@ -56,7 +56,16 @@ export default class PollsController {
         query.sum('votes_count').as('votesCount')
       })
       .orderBy('id', 'desc')
-      .paginate(page, 20)
+      .paginate(page, 10)
+
+    /**
+     * The pagination links will use the following as
+     * the base url.
+     *
+     * We also define set the query string, since the route for this
+     * controller allows filter_by query param.
+     */
+    polls.baseUrl(request.url()).queryString(request.qs())
 
     /**
      * Render the template stored inside "pages/polls/index.edge" file

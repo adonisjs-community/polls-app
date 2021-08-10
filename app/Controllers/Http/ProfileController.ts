@@ -23,7 +23,13 @@ export default class ProfileController {
       .query()
       .withAggregate('options', (query) => query.sum('votes_count').as('votesCount'))
       .orderBy('id', 'desc')
-      .paginate(page)
+      .paginate(page, 10)
+
+    /**
+     * The pagination links will use the following as
+     * the base url
+     */
+    polls.baseUrl(request.url())
 
     /**
      * Render the dashboard template
