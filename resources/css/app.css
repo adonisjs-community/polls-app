@@ -34,7 +34,7 @@ button:disabled {
   margin-top: 8px;
 }
 .dropdown_item {
-  @apply px-4 py-2 block whitespace-nowrap border-2 border-white hover:bg-gray-50 hover:text-gray-800 hover:border-teal-600;
+  @apply px-4 py-2 block whitespace-nowrap border-2 border-white hover:bg-gray-50 hover:text-gray-800 hover:border-teal-700;
 }
 
 /* Buttons */
@@ -51,5 +51,5 @@ button:disabled {
   @apply bg-white text-gray-500 shadow border border-gray-200 hover:bg-gray-50 hover:text-gray-800;
 }
 .button-primary {
-  @apply bg-teal-600 text-white shadow hover:bg-teal-700;
+  @apply bg-teal-700 text-white shadow hover:bg-teal-800;
 }

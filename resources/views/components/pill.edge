@@ -8,6 +8,8 @@
 --}}
 @if(size === 'large')
   @set('classes', `${classes} w-24 h-24 text-3xl`)
+@elseif(size === 'small')
+  @set('classes', `${classes} w-8 h-8 text-sm`)
 @else
   @set('classes', `${classes} w-12 h-12`)
 @end

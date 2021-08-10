@@ -1,6 +1,7 @@
 @layout('layouts/master')
 
 @set('title', poll.title)
+@set('description', 'Submit your vote and view results.')
 
 {{--
   Disable submissions in one of the following scanerios.
@@ -32,18 +33,26 @@
       <h2 class="section-title"> {{ poll.title }} </h2>
 
       <div class="mt-8">
-        <div class="flex items-center flex-wrap text-lg justify-between">
-          <div>
-            <span>Posted by</span>
-            <span class="text-gray-800"> {{ poll.author.fullName }}</span>
+        <div class="flex items-center space-x-2">
+          <span class="font-medium">Posted by</span>
+          <div class="w-1/2 flex">
+            <div
+              class="bg-white shadow border border-gray-300 rounded-xl py-1 px-3 flex items-center"
+            >
+              <div>
+                @!pill({
+                  text: poll.author.initials,
+                  size: 'small',
+                  color: poll.author.profileColor
+                })
+              </div>
+              <span class="text-gray-800 ml-2"> {{ poll.author.fullName }} </span>
+            </div>
           </div>
 
-          <div class="w-1/2">
-            @if(poll.expired)
-              <span> Received {{ poll.$extras.votesCount }} vote(s) </span>
-            @else
-              <span>Ends</span>
-              <span class="text-gray-800"> {{ poll.closesAt.toRelative() }}</span>
+          <div>
+            @if(!poll.expired)
+              <span class="font-medium"> Ends {{ poll.closesAt.toRelative() }}</span>
             @end
           </div>
         </div>
@@ -93,6 +102,9 @@
             >
               Submit your vote
             </button>
+            <span class="font-medium">
+              Votes received: {{ poll.$extras.votesCount }}
+            </span>
           </div>
         </div>
       </form>

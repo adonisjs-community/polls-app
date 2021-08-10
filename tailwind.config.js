@@ -1,5 +1,8 @@
 module.exports = {
-  purge: [],
+  purge: {
+    enabled: true,
+    content: ['./resources/views/**/*.edge', './resources/views/*.edge'],
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
@@ -19,8 +22,8 @@ module.exports = {
         50: '#F8F7F6',
       },
       teal: {
+        800: '#075E5A',
         700: '#09847E',
-        600: '#0B9D96',
       },
     },
     boxShadow: {
@@ -34,7 +37,7 @@ module.exports = {
       fontSize: {
         'xl': ['1.375rem', '2.125rem'],
         '6xl': ['3.625rem', '4rem'],
-      }
+      },
     },
   },
   variants: {
