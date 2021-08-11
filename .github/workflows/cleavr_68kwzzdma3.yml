@@ -1,0 +1,49 @@
+
+
+# This GitHub Actions workflow is generated and deployed by https://cleavr.io
+# The filename, cleavr_68kwzzdma3, of this workflow is tracked from within Cleavr,
+# please don't change the name. Though, feel free to add your own steps or tweak
+# the existing ones except anything listed below the warning message.
+# Read more about Cleavr's GitHub Actions integration feature at: https://bit.ly/397WKh6
+
+name: Deploy polls.adonisjs.dev App with Cleavr
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      # This is the branch that gets deployed when a push is made to this repository.
+      # If you change the default branch in Cleavr under the Webapp's settings, make sure to change it here as well.
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: bahmutov/npm-install@v1
+
+      - name: Build app
+        run: npm run build --production
+
+### ---  PLEASE DO NOT MODIFY ANYTHING BELOW THIS LINE --- ###
+
+      - name: Generate artifact name
+        id: artifact
+        uses: nanzm/get-time-action@v1.1
+        with:
+          timeZone: 8
+          format: 'YYYYMMDDHHmmss'
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: '${{ steps.artifact.outputs.time }}'
+          path: build/
+
+      - name: Start Cleavr Deployment
+        uses: fjogeleit/http-request-action@master
+        with:
+          url: '${{ secrets.DEPLOY_TRIGGER_HOOK_cleavr_68kwzzdma3 }}'
+          method: 'POST'
+          timeout: 60000
+          customHeaders: '{"artifact": "${{ steps.artifact.outputs.time }}"}'
+
