@@ -20,9 +20,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: bahmutov/npm-install@v1
-        with:
-          useLockFile: false
-
       - name: Build app
         run: npm run build --production
 

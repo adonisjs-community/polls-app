@@ -6,4 +6,3 @@ coverage
 .env
 tmp
 public/assets
-package-lock.json

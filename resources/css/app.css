@@ -9,6 +9,13 @@ button:disabled {
   cursor: not-allowed;
 }
 
+select {
+  background-image: url("data:image/svg+xml,%3Csvg width='14' height='8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%2372716D' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-position: right 15px center;
+  background-repeat: no-repeat;
+  background-size: 15px 9px;
+}
+
 /* Page section */
 .section-title {
   @apply text-6xl text-gray-800 mb-2 font-bold tracking-tight;
