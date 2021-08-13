@@ -31,6 +31,9 @@
   <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
 
+  {{-- Alpine and turbo are not friends as of now and hence we need to disable turbo cache --}}
+  <meta name="turbo-cache-control" content="no-cache">
+
   @entryPointStyles('app')
   @entryPointScripts('app')
 </head>
@@ -38,5 +41,7 @@
 <body class="bg-gray-50 font-sans text-base antialiased text-gray-500">
   @include('partials/header')
   @!section('body')
+
+  <div id="modals-container"></div>
 </body>
 </html>

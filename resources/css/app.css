@@ -58,3 +58,6 @@ select {
 .button-primary {
   @apply bg-teal-700 text-white shadow hover:bg-teal-800;
 }
+.button-danger {
+  @apply bg-red-600 text-white shadow hover:bg-red-700;
+}

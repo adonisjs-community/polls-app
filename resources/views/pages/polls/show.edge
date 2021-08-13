@@ -33,28 +33,34 @@
       <h2 class="section-title"> {{ poll.title }} </h2>
 
       <div class="mt-8">
-        <div class="flex items-center space-x-2">
-          <span class="font-medium">Posted by</span>
-          <div class="w-1/2 flex">
-            <div
-              class="bg-white shadow border border-gray-300 rounded-xl py-1 px-3 flex items-center"
-            >
-              <div>
-                @!pill({
-                  text: poll.author.initials,
-                  size: 'small',
-                  color: poll.author.profileColor
-                })
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-2 flex-1">
+            <span class="font-medium">Posted by</span>
+            <div class="w-1/2 flex">
+              <div
+                class="bg-white shadow border border-gray-300 rounded-xl py-1 px-3 flex items-center"
+              >
+                <div>
+                  @!pill({
+                    text: poll.author.initials,
+                    size: 'small',
+                    color: poll.author.profileColor
+                  })
+                </div>
+                <span class="text-gray-800 ml-2"> {{ poll.author.fullName }} </span>
               </div>
-              <span class="text-gray-800 ml-2"> {{ poll.author.fullName }} </span>
+            </div>
+
+            <div>
+              @if(!poll.expired)
+                <span class="font-medium">
+                  Ends {{ poll.closesAt.toRelative({ style: 'short' }) }}
+                </span>
+              @end
             </div>
           </div>
 
-          <div>
-            @if(!poll.expired)
-              <span class="font-medium"> Ends {{ poll.closesAt.toRelative() }}</span>
-            @end
-          </div>
+          @include('partials/polls/delete')
         </div>
       </div>
     </div>

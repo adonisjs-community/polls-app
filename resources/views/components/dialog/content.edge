@@ -1,0 +1,7 @@
+<template x-if="opened">
+  <template x-teleport="#modals-container">
+    <div {{ $props.serialize({}, false) }}>
+      {{{ await $slots.main() }}}
+    </div>
+  </template>
+</template>

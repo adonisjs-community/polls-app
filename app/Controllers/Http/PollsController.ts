@@ -181,6 +181,14 @@ export default class PollsController {
     }
 
     /**
+     * Disallow the poll author from voting to their own poll
+     */
+    if (poll.userId === auth.user!.id) {
+      session.flash({ errors: { selectedOption: 'You cannot vote on your own poll' } })
+      return response.redirect().back()
+    }
+
+    /**
      * Check if the user has already participated in this poll
      */
     const userParticipation = await auth
@@ -247,8 +255,8 @@ export default class PollsController {
      * Silently ignore requests trying to delete a non-existing
      * or a poll not owned by them
      */
-    if (!poll || poll.userId !== auth.user?.id) {
-      response.redirect('/')
+    if (!poll || poll.userId !== auth.user!.id) {
+      response.redirect('/me')
       return
     }
 
@@ -256,6 +264,6 @@ export default class PollsController {
      * Delete poll and redirect
      */
     await poll.delete()
-    response.redirect('/')
+    response.redirect('/me')
   }
 }

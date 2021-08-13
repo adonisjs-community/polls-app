@@ -1,0 +1,67 @@
+{{--
+  Show delete action when the poll author is same as the logged in user
+--}}
+@if(poll.userId === auth.user?.id)
+  @dialog({ class: 'ml-8' })
+    <a
+      href="#"
+      class="text-red-600"
+      title="Delete poll"
+      @click.prevent="open"
+    >
+      <svg viewBox="0 0 24 24" class="w-6 h-6">
+        <path fill="none" d="M0 0h24v24H0z"/>
+        <path d="M20 7v14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7H2V5h20v2h-2zM6 7v13h12V7H6zm1-5h10v2H7V2zm4 8h2v7h-2v-7z" fill="currentColor" />
+      </svg>
+    </a>
+
+    @dialog.content()
+      <div class="fixed inset-0 z-10 overflow-y-auto">
+        <div class="absolute inset-0 px-4">
+          {{-- Overlay --}}
+          <div class="fixed inset-0 bg-gray-800 opacity-60"></div>
+
+          <div
+            class="shadow-spread bg-white max-w-lg mx-auto px-12 py-8 overflow-hidden rounded-xl relative top-1/4"
+          >
+            <h2 class="font-bold text-2xl text-gray-800 mb-2">
+              Are you absolutely sure?
+            </h2>
+
+            <p class="font-medium">
+              This action <strong>CANNOT</strong> be undone. This will delete this poll and its votes permanently.
+            </p>
+
+            <div class="mt-8">
+              <form
+                method="POST"
+                action="{{ route('PollsController.destroy', [poll.id], {
+                    qs: { _method: 'DELETE' }
+                  })
+                }}"
+              >
+                <div class="flex">
+                  <button
+                    type="submit"
+                    class="button button-danger"
+                  >
+                    Delete
+                  </button>
+
+                  <button
+                    type="cancel"
+                    class="button button-neutral"
+                    x-ref="focusableItem"
+                    @click.prevent="close"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    @end
+  @end
+@end
