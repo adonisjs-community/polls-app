@@ -61,3 +61,17 @@ select {
 .button-danger {
   @apply bg-red-600 text-white shadow hover:bg-red-700;
 }
+
+/* Colorful rounded pills */
+.pill-rounded {
+  @apply rounded-full flex items-center justify-center text-gray-800 font-medium;
+}
+.pill-rounded-small {
+  @apply w-8 h-8 text-sm;
+}
+.pill-rounded-base {
+  @apply w-12 h-12;
+}
+.pill-rounded-large {
+  @apply w-24 h-24 text-3xl;
+}

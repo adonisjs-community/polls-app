@@ -21,7 +21,13 @@ export default class ProfileController {
     const polls = await auth
       .user!.related('polls')
       .query()
-      .withAggregate('options', (query) => query.sum('votes_count').as('votesCount'))
+      .withAggregate('options', (query) => {
+        /**
+         * The aggregated property "votesCount" will be available on the
+         * poll instance as "poll.$extras.votesCont".
+         */
+        query.sum('votes_count').as('votesCount')
+      })
       .orderBy('id', 'desc')
       .paginate(page, 10)
 

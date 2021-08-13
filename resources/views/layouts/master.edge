@@ -34,14 +34,17 @@
   {{-- Alpine and turbo are not friends as of now and hence we need to disable turbo cache --}}
   <meta name="turbo-cache-control" content="no-cache">
 
+  {{-- Compiled assets --}}
   @entryPointStyles('app')
   @entryPointScripts('app')
 </head>
 
 <body class="bg-gray-50 font-sans text-base antialiased text-gray-500">
   @include('partials/header')
+  @include('partials/global-notification')
   @!section('body')
 
+  {{-- A container for display modals --}}
   <div id="modals-container"></div>
 </body>
 </html>

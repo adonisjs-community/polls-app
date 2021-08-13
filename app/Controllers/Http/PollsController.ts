@@ -34,7 +34,7 @@ export default class PollsController {
     /**
      * Choose the correct query builder. If the "participated" filter is
      * applied, we use the user relationship query builder to fetch
-     * polls in which they participated.
+     * polls in which the logged in user has participated.
      *
      * Otherwise we fetch all the active polls (ignoring expired one's)
      */
@@ -63,7 +63,7 @@ export default class PollsController {
      * the base url.
      *
      * We also define set the query string, since the route for this
-     * controller allows filter_by query param.
+     * controller allows "filter_by" query param.
      */
     polls.baseUrl(request.url()).queryString(request.qs())
 
@@ -83,7 +83,7 @@ export default class PollsController {
   /**
    * Handle new poll form submission
    */
-  public async store({ request, response, auth }: HttpContextContract) {
+  public async store({ request, response, auth, session }: HttpContextContract) {
     /**
      * Validate request input
      */
@@ -120,6 +120,7 @@ export default class PollsController {
       return poll
     })
 
+    session.flash({ notification: { success: 'Poll has been created successfully' } })
     response.redirect().toRoute('PollsController.show', [poll.slug])
   }
 
@@ -248,7 +249,7 @@ export default class PollsController {
   /**
    * Route to delete a poll by its id
    */
-  public async destroy({ request, response, auth }: HttpContextContract) {
+  public async destroy({ request, response, auth, session }: HttpContextContract) {
     const poll = await Poll.find(request.param('id'))
 
     /**
@@ -264,6 +265,7 @@ export default class PollsController {
      * Delete poll and redirect
      */
     await poll.delete()
+    session.flash({ notification: { success: 'Poll deleted successfully' } })
     response.redirect('/me')
   }
 }

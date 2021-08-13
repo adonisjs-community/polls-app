@@ -27,6 +27,22 @@ Alpine.data('dialog', function () {
   }
 })
 
+Alpine.data('notification', function (options) {
+  return {
+    visible: options.autoClose === true ? false : true,
+    autoClose: !!options.autoClose,
+    init() {
+      if (this.autoClose) {
+        setTimeout(() => {
+          this.visible = true
+        }, 1000)
+        setTimeout(() => {
+          this.visible = false
+        }, 6000)
+      }
+    },
+  }
+})
+
 Alpine.plugin(teleport)
 Alpine.start()
-window.Alpine = Alpine

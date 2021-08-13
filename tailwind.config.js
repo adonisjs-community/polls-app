@@ -26,6 +26,9 @@ module.exports = {
         800: '#075E5A',
         700: '#09847E',
       },
+      green: {
+        700: '#118C37',
+      },
     },
     boxShadow: {
       DEFAULT: '0px 2px 4px rgba(44, 43, 42, 0.1)',

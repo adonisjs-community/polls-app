@@ -1,9 +1,11 @@
 <div class="flex items-center py-4 border-b border-gray-300">
   <div title="{{ poll.$extras.votesCount }} vote(s)">
-    @!pill({
-      color: poll.pollColor,
-      text: poll.$extras.votesCount > 99 ? '99+' : poll.$extras.votesCount,
-    })
+    <div
+      class="pill-rounded pill-rounded-base"
+      style="background-color: {{ poll.pollColor }}"
+    >
+      {{ poll.$extras.votesCount > 99 ? '99+' : poll.$extras.votesCount }}
+    </div>
   </div>
   <div class="ml-6">
     <h3 class="mb-0.5">
@@ -15,6 +17,8 @@
       </a>
     </h3>
 
-    <p> {{ poll.expired ? 'Ended' : 'Ends' }} {{ poll.closesAt.toRelative() }} </p>
+    <p>
+      {{ poll.expired ? 'Ended' : 'Ends' }} {{ poll.closesAt.toRelative({ style: 'short' }) }}
+    </p>
   </div>
 </div>

@@ -41,11 +41,12 @@
                 class="bg-white shadow border border-gray-300 rounded-xl py-1 px-3 flex items-center"
               >
                 <div>
-                  @!pill({
-                    text: poll.author.initials,
-                    size: 'small',
-                    color: poll.author.profileColor
-                  })
+                  <div
+                    class="pill-rounded pill-rounded-small"
+                    style="background-color: {{ poll.author.profileColor }}"
+                  >
+                    {{ poll.author.initials }}
+                  </div>
                 </div>
                 <span class="text-gray-800 ml-2"> {{ poll.author.fullName }} </span>
               </div>
@@ -71,11 +72,11 @@
     --}}
     @if(poll.expired)
       <div class="mt-8">
-        @!notification({ text: 'Voting on this poll has been closed' })
+        @!notification.info({ text: 'Voting on this poll has been closed' })
       </div>
     @elseif(!auth.isLoggedIn)
       <div class="mt-8">
-        @!notification({ text: 'You can vote on this poll after you login to your account' })
+        @!notification.info({ text: 'You can vote on this poll after you login to your account' })
       </div>
     @end
 
@@ -93,7 +94,7 @@
 
               <div>
                 @each(option in poll.options)
-                  @include('partials/polls/option')
+                  @include('partials/polls/voting-option')
                 @end
                 @!form.error()
               </div>

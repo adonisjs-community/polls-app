@@ -21,7 +21,12 @@
 @else
   <div class="relative" x-data="{ opened: false }">
     <button @click.prevent="opened = !opened" @click.away="opened = false">
-      @!pill({ color: auth.user.profileColor, text: auth.user.initials })
+      <div
+        class="pill-rounded pill-rounded-base"
+        style="background-color: {{ auth.user.profileColor }}"
+      >
+        {{ auth.user.initials }}
+      </div>
     </button>
 
     <div class="dropdown" x-show="opened">
@@ -31,6 +36,7 @@
         </li>
 
         <li>
+          {{-- Logout request should not use the GET method --}}
           <form action="{{ route('LoginController.destroy') }}" method="POST" x-data="{}">
             <a
               href="{{ route('LoginController.destroy') }}"
