@@ -18,8 +18,5 @@ The codebase serves two main purposes.
 ## Demo
 You can view the application demo at https://polls.adonisjs.dev.
 
-## Code walkthrough
-I am currently recording screencasts to walk you through the application codebase. They will be available in a week from today on Youtube.
-
 ## Share and love
 If you like this application, then please share it with your co-workers and friends or maybe tweet it to the universe :)
