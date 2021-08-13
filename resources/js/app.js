@@ -1,6 +1,7 @@
 import '../css/app.css'
 import '@hotwired/turbo'
 import Alpine from 'alpinejs'
+import { listen } from 'quicklink'
 import teleport from 'alpine-teleport'
 
 Alpine.data('dialog', function () {
@@ -46,3 +47,9 @@ Alpine.data('notification', function (options) {
 
 Alpine.plugin(teleport)
 Alpine.start()
+
+document.addEventListener('turbo:load', () => {
+  listen({
+    el: document.querySelector('#sidebar'),
+  })
+})
