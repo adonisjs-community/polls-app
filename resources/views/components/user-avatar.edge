@@ -1,10 +1,10 @@
 {{-- Classes to use for sizing the avatar pill --}}
+@set('classes', 'pill-rounded-base')
+
 @if(size === 'small')
   @set('classes', 'pill-rounded-small')
 @elseif(size === 'large')
   @set('classes', 'pill-rounded-large')
-@else
-  @set('classes', 'pill-rounded-base')
 @end
 
 {{--
