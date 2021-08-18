@@ -6,14 +6,14 @@
 @section('body')
   <section class="max-w-xl mx-auto pt-20">
     <div class="flex items-center">
-      <div>
-        <div
-          class="pill-rounded pill-rounded-large"
-          style="background-color: {{ auth.user.profileColor }}"
-        >
-          {{ auth.user.initials }}
+
+      <turbo-frame id="fileUpload">
+        <div class="relative">
+          @!userAvatar({ user: auth.user, size: 'large' })
+          @include('partials/user/update-avatar')
         </div>
-      </div>
+      </turbo-frame>
+
       <div class="ml-6">
         <h2 class="section-title">{{ auth.user.fullName }}</h2>
         <h2 class="section-subtitle">{{ auth.user.email }}</h2>

@@ -1,4 +1,6 @@
+import Drive from '@ioc:Adonis/Core/Drive'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import UpdateUserAvatarValidator from 'App/Validators/UpdateUserAvatarValidator'
 
 /**
  * Profile controller for the currently logged in user.
@@ -41,5 +43,35 @@ export default class ProfileController {
      * Render the dashboard template
      */
     return view.render('pages/dashboard', { polls })
+  }
+
+  /**
+   * Update user avatar
+   */
+  public async updateAvatar({ request, auth, session, response }: HttpContextContract) {
+    /**
+     * Validate request
+     */
+    const { avatar } = await request.validate(UpdateUserAvatarValidator)
+
+    /**
+     * Move avatar using the default disk.
+     */
+    await avatar.moveToDisk('./')
+
+    try {
+      auth.user!.avatarFilename = avatar.fileName!
+      await auth.user!.save()
+    } catch (error) {
+      /**
+       * Remove avatar from disk when unable to persist changes
+       * to the database
+       */
+      await Drive.delete(avatar.fileName!)
+      throw error
+    }
+
+    session.flash({ notification: { success: 'Updated avatar successfully' } })
+    response.redirect().toRoute('ProfileController.index')
   }
 }

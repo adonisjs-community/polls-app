@@ -20,6 +20,12 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+import Drive from '@ioc:Adonis/Core/Drive'
+import View from '@ioc:Adonis/Core/View'
+
+View.global('makeUrl', function (location: string) {
+  return Drive.getUrl(location)
+})
 
 /**
  * All params named ":id" should be valid numbers.
@@ -46,6 +52,7 @@ Route.get('/', 'PollsController.index')
  * for the currently logged-in user
  */
 Route.get('/me', 'ProfileController.index').middleware('auth')
+Route.post('/me/avatar', 'ProfileController.updateAvatar').middleware('auth')
 
 /**
  * Polls resource management. One should be logged-in to interact

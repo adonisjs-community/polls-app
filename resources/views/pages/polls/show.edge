@@ -41,12 +41,7 @@
                 class="bg-white shadow border border-gray-300 rounded-xl py-1 px-3 flex items-center"
               >
                 <div>
-                  <div
-                    class="pill-rounded pill-rounded-small"
-                    style="background-color: {{ poll.author.profileColor }}"
-                  >
-                    {{ poll.author.initials }}
-                  </div>
+                  @!userAvatar({ user: poll.author, size: 'small' })
                 </div>
                 <span class="text-gray-800 ml-2"> {{ poll.author.fullName }} </span>
               </div>

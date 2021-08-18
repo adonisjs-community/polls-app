@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
 import Poll from 'App/Models/Poll'
 import Hash from '@ioc:Adonis/Core/Hash'
+import Drive from '@ioc:Adonis/Core/Drive'
 import ColorPalette from 'App/Services/ColorPalette'
 
 import {
@@ -32,6 +33,9 @@ export default class User extends BaseModel {
 
   @column()
   public rememberMeToken?: string
+
+  @column()
+  public avatarFilename?: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
@@ -66,6 +70,16 @@ export default class User extends BaseModel {
   @beforeCreate()
   public static assignColor(user: User) {
     user.profileColor = ColorPalette.getRandom()
+  }
+
+  /**
+   * Remove old avatar from the disk when new one is assigned
+   */
+  @beforeSave()
+  public static async cleanupAvatarsStorage(user: User) {
+    if (user.$dirty.avatarFilename && user.$original.avatarFilename) {
+      await Drive.delete(user.$original.avatarFilename)
+    }
   }
 
   /**

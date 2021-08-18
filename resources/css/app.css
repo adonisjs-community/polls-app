@@ -36,7 +36,7 @@ select {
 /* Header menu dropdown */
 .dropdown {
   @apply bg-white shadow-spread absolute right-0 py-2 -mr-4 min-w-240;
-  margin-top: 8px;
+  margin-top: 5px;
 }
 .dropdown_item {
   @apply px-4 py-2 block whitespace-nowrap border-2 border-white hover:bg-gray-50 hover:text-gray-800 hover:border-teal-700;

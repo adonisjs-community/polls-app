@@ -1,4 +1,5 @@
 module.exports = {
+  mode: 'jit',
   purge: {
     enabled: true,
     content: ['./resources/views/**/*.edge', './resources/views/*.edge'],

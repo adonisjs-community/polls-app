@@ -1,0 +1,31 @@
+<form
+  method="POST"
+  action="{{ route('ProfileController.updateAvatar') }}"
+  enctype="multipart/form-data"
+  x-data="{}"
+>
+  @form.control({
+    name: 'avatar'
+  })
+    <div class="opacity-0 rounded-full bg-gray-800 absolute inset-0 hover:opacity-60">
+      @form.label({
+        class: 'cursor-pointer flex items-center h-full w-full justify-center relative text-white'
+      })
+        <svg viewBox="0 0 24 24" class="w-6 h-6">
+          <path fill="none" d="M0 0h24v24H0z"/>
+          <path d="M9.828 5l-2 2H4v12h16V7h-3.828l-2-2H9.828zM9 3h6l2 2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4l2-2zm3 15a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0-2a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" fill="currentColor" />
+        </svg>
+      @end
+
+      @!form.input({
+        type: 'file',
+        hidden: true,
+        '@change': "(event) => event.target.closest('form').submit()"
+      })
+    </div>
+
+    <div class="absolute mt-1 whitespace-nowrap">
+      @!form.error()
+    </div>
+  @end
+</form>

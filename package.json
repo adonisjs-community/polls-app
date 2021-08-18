@@ -25,7 +25,6 @@
     "pino-pretty": "^5.1.2",
     "postcss-loader": "^6.1.1",
     "prettier": "^2.3.2",
-    "quicklink": "^2.2.0",
     "tailwindcss": "^2.2.7",
     "typescript": "^4.3.5",
     "youch": "^2.2.2",
@@ -33,7 +32,8 @@
   },
   "dependencies": {
     "@adonisjs/auth": "^8.0.7",
-    "@adonisjs/core": "^5.1.11",
+    "@adonisjs/core": "^5.2.4",
+    "@adonisjs/drive-s3": "^1.0.2",
     "@adonisjs/lucid": "^15.0.3",
     "@adonisjs/lucid-slugify": "^2.1.1",
     "@adonisjs/repl": "^3.1.5",

@@ -257,7 +257,7 @@ export default class PollsController {
      * or a poll not owned by them
      */
     if (!poll || poll.userId !== auth.user!.id) {
-      response.redirect('/me')
+      response.redirect().toRoute('ProfileController.index')
       return
     }
 
@@ -266,6 +266,6 @@ export default class PollsController {
      */
     await poll.delete()
     session.flash({ notification: { success: 'Poll deleted successfully' } })
-    response.redirect('/me')
+    response.redirect().toRoute('ProfileController.index')
   }
 }
