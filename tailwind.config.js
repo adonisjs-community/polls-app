@@ -39,6 +39,9 @@ module.exports = {
       240: '240px',
     },
     extend: {
+      minHeight: {
+        shell: 'calc(100vh - 97px - 64px)',
+      },
       fontSize: {
         'xl': ['1.375rem', '2.125rem'],
         '6xl': ['3.625rem', '4rem'],

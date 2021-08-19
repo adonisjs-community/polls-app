@@ -42,7 +42,30 @@
 <body class="bg-gray-50 font-sans text-base antialiased text-gray-500">
   @include('partials/header')
   @include('partials/global-notification')
-  @!section('body')
+
+  <div class="min-h-shell">
+    @!section('body')
+  </div>
+
+  <footer>
+    <div class="max-w-xl mx-auto border-t border-gray-300 text-sm">
+      <div class="flex items-center justify-between h-24">
+        <p>
+          <a
+            href="https://github.com/adonisjs-community/polls-app"
+            class="font-medium underline">
+            Source code
+          </a>
+        </p>
+        <p>
+          <span>Made with</span>
+          <a href="https://adonisjs.com" class="font-medium underline">AdonisJS</a>
+          <span>&</span>
+          <a href="https://sargam.design/" class="font-medium underline"> Sargam </a>
+        </p>
+      </div>
+    </div>
+  </footer>
 
   {{-- A container for display modals --}}
   <div id="modals-container"></div>
