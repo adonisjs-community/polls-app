@@ -18,6 +18,7 @@ The codebase serves two main purposes.
 ## What will I learn from this app?
 
 - You will learn about the basic CRUD operations and how to use the AdonisJS ORM to interact with the database.
+- Paginate database records.
 - Learn how to validate the user input using [Request validators](./app/Validators).
 - Work with [file uploads](./app/Controllers/Http/ProfileController.ts#55-60) (including validations) and AdonisJS drive.
 - Using the Edge template engine and its [components layer](./resources/views/components).
