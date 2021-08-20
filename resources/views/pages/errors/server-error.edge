@@ -2,18 +2,20 @@
 @set('title', 'Server error')
 
 @section('body')
-  <div class="max-w-xl mx-auto py-32 text-center">
-    <div>
-      <h2 class="section-title">Server error</h2>
-      <p class="section-subtitle">
-        Uh-oh! Something went wrong. We have notified about the event and we will look into it.
-      </p>
-    </div>
+  <div class="min-h-shell flex justify-center flex-col">
+    <div class="max-w-xl mx-auto text-center py-20">
+      <div>
+        <h2 class="section-title">Server error</h2>
+        <p class="section-subtitle">
+          Uh-oh! Something went wrong. We have notified about the event and we will look into it.
+        </p>
+      </div>
 
-    <div class="mt-12">
-      <a href="{{ route('PollsController.index') }}" class="button button-secondary">
-        Discover all polls
-      </a>
+      <div class="mt-12">
+        <a href="{{ route('PollsController.index') }}" class="button button-secondary">
+          Discover all polls
+        </a>
+      </div>
     </div>
   </div>
 @end
