@@ -1,5 +1,17 @@
 {
   "commands": {
+    "publish:assets": {
+      "settings": {
+        "loadApp": false,
+        "stayAlive": false
+      },
+      "commandPath": "./commands/PublishAssets",
+      "commandName": "publish:assets",
+      "description": "",
+      "args": [],
+      "aliases": [],
+      "flags": []
+    },
     "dump:rcfile": {
       "settings": {},
       "commandPath": "@adonisjs/core/commands/DumpRc",
