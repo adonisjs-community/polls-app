@@ -1,28 +1,19 @@
 import '../css/app.css'
+
+import 'instant.page'
 import '@hotwired/turbo'
 import Alpine from 'alpinejs'
+import trap from '@alpinejs/trap'
 import teleport from 'alpine-teleport'
 
 Alpine.data('dialog', function () {
   return {
     opened: false,
-    init() {},
-    lastFocusedElement: null,
     open() {
       this.opened = true
-      this.lastFocusedElement = document.activeElement
-
-      this.$nextTick(() => {
-        if (this.$refs.focusableItem) {
-          this.$refs.focusableItem.focus()
-        }
-      })
     },
     close() {
       this.opened = false
-      if (this.lastFocusedElement) {
-        this.lastFocusedElement.focus()
-      }
     },
   }
 })
@@ -45,4 +36,5 @@ Alpine.data('notification', function (options) {
 })
 
 Alpine.plugin(teleport)
+Alpine.plugin(trap)
 Alpine.start()

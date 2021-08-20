@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "@adonisjs/assembler": "^5.3.5",
+    "@alpinejs/trap": "^3.2.3",
     "@hotwired/turbo": "^7.0.0-rc.1",
     "@symfony/webpack-encore": "^1.5.0",
     "adonis-preset-ts": "^2.1.0",
@@ -22,6 +23,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-adonis": "^1.3.3",
     "eslint-plugin-prettier": "^3.4.0",
+    "instant.page": "^5.1.0",
     "pino-pretty": "^5.1.2",
     "postcss-loader": "^6.1.1",
     "prettier": "^2.3.2",
@@ -33,9 +35,9 @@
   "dependencies": {
     "@adonisjs/auth": "^8.0.7",
     "@adonisjs/core": "^5.2.4",
-    "@adonisjs/drive-s3": "^1.0.2",
+    "@adonisjs/drive-s3": "^1.0.3",
     "@adonisjs/lucid": "^15.0.3",
-    "@adonisjs/lucid-slugify": "^2.1.1",
+    "@adonisjs/lucid-slugify": "^2.1.2",
     "@adonisjs/repl": "^3.1.5",
     "@adonisjs/session": "^6.1.1",
     "@adonisjs/shield": "^7.0.5",
