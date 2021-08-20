@@ -14,83 +14,85 @@
     </div>
 
     <div class="mt-16">
-      <form action="{{ route('PollsController.store') }}" method="POST">
-        <div class="mt-6">
-          @form.control({
-            name: 'title'
-          })
-            <div class="mb-2">
-              @!form.label({ title: 'Title' })
-            </div>
-            <div>
-              @!form.input()
-              @!form.error()
-            </div>
-          @end
-        </div>
+      <turbo-frame id="create-poll">
+        <form action="{{ route('PollsController.store') }}" method="POST">
+          <div class="mt-6">
+            @form.control({
+              name: 'title'
+            })
+              <div class="mb-2">
+                @!form.label({ title: 'Title' })
+              </div>
+              <div>
+                @!form.input()
+                @!form.error()
+              </div>
+            @end
+          </div>
 
-        <div class="mt-6">
-          @form.control({
-            name: 'days'
-          })
-            <div class="mb-2">
-              @!form.label({ title: 'Poll Duration (in days)' })
-            </div>
-            <div>
-              @!form.select({
-                options: [...new Array(7)].map((_, index) => {
-                  return { value: index + 1, text: `${index + 1} ${pluralize('day', index + 1)}` }
+          <div class="mt-6">
+            @form.control({
+              name: 'days'
+            })
+              <div class="mb-2">
+                @!form.label({ title: 'Poll Duration (in days)' })
+              </div>
+              <div>
+                @!form.select({
+                  options: [...new Array(7)].map((_, index) => {
+                    return { value: index + 1, text: `${index + 1} ${pluralize('day', index + 1)}` }
+                  })
                 })
-              })
-              @!form.error()
-            </div>
-          @end
-        </div>
-
-        <div class="mt-8">
-          <div class="mb-2">
-            @!form.label({ title: 'Answer Options' })
+                @!form.error()
+              </div>
+            @end
           </div>
-          <div>
+
+          <div class="mt-8">
+            <div class="mb-2">
+              @!form.label({ title: 'Answer Options' })
+            </div>
             <div>
-              @form.control({ name: 'options.0.title' })
-                @!form.input({ placeholder: 'Choose an answer' })
-                @!form.error()
-              @end
-            </div>
+              <div>
+                @form.control({ name: 'options.0.title' })
+                  @!form.input({ placeholder: 'Choose an answer' })
+                  @!form.error()
+                @end
+              </div>
 
-            <div class="mt-2">
-              @form.control({ name: 'options.1.title' })
-                @!form.input({ placeholder: 'Choose an answer' })
-                @!form.error()
-              @end
-            </div>
+              <div class="mt-2">
+                @form.control({ name: 'options.1.title' })
+                  @!form.input({ placeholder: 'Choose an answer' })
+                  @!form.error()
+                @end
+              </div>
 
-            <div class="mt-2">
-              @form.control({ name: 'options.2.title' })
-                @!form.input({ placeholder: 'Choose an answer (optional)' })
-                @!form.error()
-              @end
-            </div>
+              <div class="mt-2">
+                @form.control({ name: 'options.2.title' })
+                  @!form.input({ placeholder: 'Choose an answer (optional)' })
+                  @!form.error()
+                @end
+              </div>
 
-            <div class="mt-2">
-              @form.control({ name: 'options.3.title' })
-                @!form.input({ placeholder: 'Choose an answer (optional)' })
-                @!form.error()
-              @end
+              <div class="mt-2">
+                @form.control({ name: 'options.3.title' })
+                  @!form.input({ placeholder: 'Choose an answer (optional)' })
+                  @!form.error()
+                @end
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="mt-12">
-          <button
-              type="sumbit"
-              class="button button-primary button-large"
-            >
-            Create Poll
-          </button>
-        </div>
-      </form>
+          <div class="mt-12">
+            <button
+                type="sumbit"
+                class="button button-primary button-large"
+              >
+              Create Poll
+            </button>
+          </div>
+        </form>
+      </turbo-frame>
     </div>
   </section>
 @end
