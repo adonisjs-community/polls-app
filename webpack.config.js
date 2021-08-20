@@ -30,7 +30,12 @@ Encore.setOutputPath('./public/assets')
 | relative from the "public" directory.
 |
 */
-Encore.setPublicPath('/assets')
+if (Encore.isProduction()) {
+  Encore.setPublicPath('https://polls-app.nyc3.cdn.digitaloceanspaces.com/assets')
+  Encore.setManifestKeyPrefix('assets/')
+} else {
+  Encore.setPublicPath('/assets')
+}
 
 /*
 |--------------------------------------------------------------------------
