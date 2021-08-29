@@ -20,12 +20,6 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
-import Drive from '@ioc:Adonis/Core/Drive'
-import View from '@ioc:Adonis/Core/View'
-
-View.global('makeUrl', function (location: string) {
-  return Drive.getUrl(location)
-})
 
 /**
  * All params named ":id" should be valid numbers.

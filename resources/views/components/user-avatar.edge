@@ -13,7 +13,7 @@
 @if(user.avatarFilename)
   <div
     class="pill-rounded {{ classes }} bg-cover"
-    style="background-image: url('{{ await makeUrl(user.avatarFilename) }}');"
+    style="background-image: url('{{ await driveUrl(user.avatarFilename) }}');"
   >
   </div>
 @else

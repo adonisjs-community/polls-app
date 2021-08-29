@@ -76,7 +76,7 @@ const driveConfig: DriveConfig = {
       | storage services that has inbuilt capabilities to serve files.
       |
       */
-      serveAssets: true,
+      serveFiles: true,
 
       /*
       |--------------------------------------------------------------------------
