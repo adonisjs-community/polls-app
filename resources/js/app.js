@@ -1,6 +1,5 @@
 import '../css/app.css'
 
-import 'instant.page'
 import '@hotwired/turbo'
 import Alpine from 'alpinejs'
 import trap from '@alpinejs/trap'
