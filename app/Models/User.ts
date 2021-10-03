@@ -3,6 +3,7 @@ import Poll from 'App/Models/Poll'
 import Hash from '@ioc:Adonis/Core/Hash'
 import Drive from '@ioc:Adonis/Core/Drive'
 import ColorPalette from 'App/Services/ColorPalette'
+import { attachment, AttachmentContract } from '@ioc:Adonis/Addons/AttachmentLite'
 
 import {
   column,
@@ -34,8 +35,8 @@ export default class User extends BaseModel {
   @column()
   public rememberMeToken?: string
 
-  @column()
-  public avatarFilename?: string
+  @attachment({ preComputeUrl: true })
+  public avatar: AttachmentContract | null
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

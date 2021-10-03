@@ -10,10 +10,10 @@
 {{--
   Display user avatar url when the avatarFilename exists
 --}}
-@if(user.avatarFilename)
+@if(user.avatar)
   <div
     class="pill-rounded {{ classes }} bg-cover"
-    style="background-image: url('{{ await driveUrl(user.avatarFilename) }}');"
+    style="background-image: url('{{ user.avatar.url }}');"
   >
   </div>
 @else

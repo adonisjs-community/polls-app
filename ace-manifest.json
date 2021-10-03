@@ -7,14 +7,14 @@
       },
       "commandPath": "./commands/PublishAssets",
       "commandName": "publish:assets",
-      "description": "",
+      "description": "Publish assets to a remote s3 or digital ocean bucket",
       "args": [],
       "aliases": [],
       "flags": []
     },
     "dump:rcfile": {
       "settings": {},
-      "commandPath": "@adonisjs/core/commands/DumpRc",
+      "commandPath": "@adonisjs/core/build/commands/DumpRc",
       "commandName": "dump:rcfile",
       "description": "Dump contents of .adonisrc.json file along with defaults",
       "args": [],
@@ -25,7 +25,7 @@
       "settings": {
         "loadApp": true
       },
-      "commandPath": "@adonisjs/core/commands/ListRoutes",
+      "commandPath": "@adonisjs/core/build/commands/ListRoutes",
       "commandName": "list:routes",
       "description": "List application routes",
       "args": [],
@@ -41,7 +41,7 @@
     },
     "generate:key": {
       "settings": {},
-      "commandPath": "@adonisjs/core/commands/GenerateKey",
+      "commandPath": "@adonisjs/core/build/commands/GenerateKey",
       "commandName": "generate:key",
       "description": "Generate a new APP_KEY secret",
       "args": [],

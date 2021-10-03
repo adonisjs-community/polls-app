@@ -150,12 +150,6 @@ Encore.configureDevServerOptions((options) => {
     directory: join(__dirname, './resources/views'),
     watch: true,
   })
-
-  /**
-   * Reset client as webpack encore is using an unallowed "host"
-   * property.
-   */
-  options.client = {}
 })
 
 /*

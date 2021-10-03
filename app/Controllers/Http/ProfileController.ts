@@ -1,4 +1,4 @@
-import Drive from '@ioc:Adonis/Core/Drive'
+import { Attachment } from '@ioc:Adonis/Addons/AttachmentLite'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import UpdateUserAvatarValidator from 'App/Validators/UpdateUserAvatarValidator'
 
@@ -55,21 +55,10 @@ export default class ProfileController {
     const { avatar } = await request.validate(UpdateUserAvatarValidator)
 
     /**
-     * Move avatar using the default disk.
+     * Update avatar
      */
-    await avatar.moveToDisk('./')
-
-    try {
-      auth.user!.avatarFilename = avatar.fileName!
-      await auth.user!.save()
-    } catch (error) {
-      /**
-       * Remove avatar from disk when unable to persist changes
-       * to the database
-       */
-      await Drive.delete(avatar.fileName!)
-      throw error
-    }
+    auth.user!.avatar = Attachment.fromFile(avatar)
+    await auth.user!.save()
 
     session.flash({ notification: { success: 'Updated avatar successfully' } })
     response.redirect().toRoute('ProfileController.index')
