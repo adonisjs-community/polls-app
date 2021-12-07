@@ -13,7 +13,6 @@
   "devDependencies": {
     "@adonisjs/assembler": "^5.3.8",
     "@alpinejs/trap": "^3.7.0",
-    "@hotwired/turbo": "^7.1.0",
     "@symfony/webpack-encore": "^1.7.0",
     "adonis-preset-ts": "^2.1.0",
     "alpine-teleport": "^1.0.1",
@@ -28,6 +27,7 @@
     "prettier": "^2.5.1",
     "tailwindcss": "^2.2.19",
     "typescript": "^4.5.2",
+    "unpoly": "^2.4.1",
     "youch": "^2.2.2",
     "youch-terminal": "^1.1.1"
   },

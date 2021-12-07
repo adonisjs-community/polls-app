@@ -4,6 +4,8 @@
       @each(anchor in polls.getUrlsForRange(1, polls.lastPage))
          <a
           href="{{ anchor.url }}"
+          up-target="[layout-main]"
+          up-preload
           class="h-8 w-8 flex justify-around items-center rounded-full font-medium {{ anchor.isActive ? 'bg-gray-800 text-white' : 'hover:bg-gray-100 hover:text-gray-800' }}"
         >
           {{ anchor.page }}

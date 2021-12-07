@@ -2,7 +2,10 @@
   method="POST"
   action="{{ route('ProfileController.updateAvatar') }}"
   enctype="multipart/form-data"
-  x-data="{}"
+  up-target="[layout-root]"
+  up-fail-target="[avatar-form-fragment]"
+  up-autosubmit
+  avatar-form-fragment
 >
   @form.control({
     name: 'avatar'
@@ -20,7 +23,6 @@
       @!form.input({
         type: 'file',
         hidden: true,
-        '@change': "(event) => event.target.closest('form').submit()"
       })
     </div>
 

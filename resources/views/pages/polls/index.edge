@@ -18,6 +18,8 @@
       <div class="tabs">
         <a
           href="{{ route('PollsController.index') }}"
+          up-target="[layout-main]"
+          up-preload
           class="tab-item {{ filterBy !== 'participated' ? 'active' : '' }}"
         >
           All
@@ -25,6 +27,8 @@
 
         <a
           href="{{ route('PollsController.index', [], { qs: { filter_by: 'participated' } }) }}"
+          up-target="[layout-main]"
+          up-preload
           class="tab-item {{ filterBy === 'participated' ? 'active' : '' }}"
         >
           Participated in

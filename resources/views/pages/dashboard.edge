@@ -7,12 +7,10 @@
   <section class="max-w-xl mx-auto py-20">
     <div class="flex items-center">
 
-      <turbo-frame id="fileUpload">
-        <div class="relative">
-          @!userAvatar({ user: auth.user, size: 'large' })
-          @include('partials/user/update-avatar')
-        </div>
-      </turbo-frame>
+      <div class="relative">
+        @!userAvatar({ user: auth.user, size: 'large' })
+        @include('partials/user/update-avatar')
+      </div>
 
       <div class="ml-6">
         <h2 class="section-title">{{ auth.user.fullName }}</h2>
@@ -22,12 +20,9 @@
 
     <div class="mt-16">
       <div class="tabs">
-        <a
-          href="{{ route('PollsController.index') }}"
-          class="tab-item active"
-        >
+        <span class="tab-item active">
           My Polls
-        </a>
+        </span>
       </div>
 
       <div class="mx-2">

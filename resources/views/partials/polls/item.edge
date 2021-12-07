@@ -12,6 +12,8 @@
       <a
         href="{{ route('PollsController.show', [poll.slug]) }}"
         class="text-teal-800 text-xl"
+        up-preload
+        up-target="[layout-main]"
       >
         {{ poll.title }}
       </a>

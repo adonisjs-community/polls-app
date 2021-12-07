@@ -1,8 +1,8 @@
-<header class="bg-white shadow">
+<header class="bg-white shadow" layout-header>
   <div class="container mx-auto">
     <div class="flex h-16 items-center justify-between">
       <div class="flex items-center">
-        <a href="/" title="Go to homepage">
+        <a href="/" title="Go to homepage" up-target="[layout-main]">
           @include('partials/logo')
         </a>
 
@@ -10,6 +10,8 @@
           <a
             href="{{ route('PollsController.create') }}"
             class="button button-secondary"
+            up-target="[layout-main]"
+            up-preload
           >
             + Create new poll
           </a>

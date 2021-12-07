@@ -13,7 +13,12 @@
     </div>
 
     <div class="mt-16">
-      <form action="{{ route('SignupController.store') }}" method="POST">
+      <form
+        action="{{ route('SignupController.store') }}"
+        method="POST"
+        up-target="[layout-root]"
+        up-fail-target="[layout-main]"
+      >
         <div class="mt-6">
           @form.control({
             name: 'fullName',

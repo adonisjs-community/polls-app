@@ -1,5 +1,5 @@
 @if(flashMessages.has('notification.success'))
-  <div class="absolute left-1/2 transform -translate-x-2/4 -mt-4">
+  <div class="absolute left-1/2 transform -translate-x-2/4 -mt-4" global-notification-fragment>
     @!notification.success({
       text: flashMessages.get('notification.success'),
       autoClose: true,

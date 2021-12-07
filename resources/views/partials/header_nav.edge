@@ -4,6 +4,8 @@
       <a
         href="{{ route('LoginController.create') }}"
         class="button button-neutral"
+        up-target="[layout-main]"
+        up-preload
       >
         Log In
       </a>
@@ -13,6 +15,8 @@
       <a
         href="{{ route('SignupController.create') }}"
         class="button button-primary"
+        up-target="[layout-main]"
+        up-preload
       >
         Sign Up
       </a>
@@ -27,7 +31,13 @@
     <div class="dropdown" x-show="opened">
       <ul>
         <li>
-          <a href="/me" class="dropdown_item"> My profile </a>
+          <a
+            href="/me"
+            class="dropdown_item"
+            up-target="[layout-main]"
+            up-preload
+            @click="opened = false"
+          > My profile </a>
         </li>
 
         <li>

@@ -76,42 +76,45 @@
     @end
 
     <div class="mt-8">
-      <turbo-frame id="submit-vote">
-        <form action="{{ route('PollsController.submitVote', [poll.id]) }}" method="POST">
+      <form
+        action="{{ route('PollsController.submitVote', [poll.id]) }}"
+        method="POST"
+        up-fail-target="[layout-main]"
+        up-target="[layout-main]"
+      >
+        <div>
           <div>
-            <div>
-              @form.control({ name: 'selectedOption' })
-                <div class="mb-8">
-                  @!form.label({
-                    title: 'Choose an answer',
-                    class: 'text-xl text-gray-800 font-medium'
-                  })
-                </div>
+            @form.control({ name: 'selectedOption' })
+              <div class="mb-8">
+                @!form.label({
+                  title: 'Choose an answer',
+                  class: 'text-xl text-gray-800 font-medium'
+                })
+              </div>
 
-                <div>
-                  @each(option in poll.options)
-                    @include('partials/polls/voting-option')
-                  @end
-                  @!form.error()
-                </div>
-              @end
-            </div>
-
-            <div class="mt-12 flex justify-between items-center">
-              <button
-                type="sumbit"
-                class="button button-primary button-large"
-                {{ disableSubmission ? 'disabled' : '' }}
-              >
-                Submit your vote
-              </button>
-              <span class="font-medium">
-                Votes received: {{ poll.$extras.votesCount }}
-              </span>
-            </div>
+              <div>
+                @each(option in poll.options)
+                  @include('partials/polls/voting-option')
+                @end
+                @!form.error()
+              </div>
+            @end
           </div>
-        </form>
-      </turbo-frame>
+
+          <div class="mt-12 flex justify-between items-center">
+            <button
+              type="sumbit"
+              class="button button-primary button-large"
+              {{ disableSubmission ? 'disabled' : '' }}
+            >
+              Submit your vote
+            </button>
+            <span class="font-medium">
+              Votes received: {{ poll.$extras.votesCount }}
+            </span>
+          </div>
+        </div>
+      </form>
     </div>
   </section>
 @end

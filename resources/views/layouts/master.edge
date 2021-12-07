@@ -30,19 +30,16 @@
   <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
 
-  {{-- Alpine and turbo are not friends as of now and hence we need to disable turbo cache --}}
-  <meta name="turbo-cache-control" content="no-cache">
-
   {{-- Compiled assets --}}
   @entryPointStyles('app')
   @entryPointScripts('app')
 </head>
 
-<body class="bg-gray-50 font-sans text-base antialiased text-gray-500" data-instant-allow-query-string>
+<body class="bg-gray-50 font-sans text-base antialiased text-gray-500" layout-root>
   @include('partials/header')
-  @include('partials/global-notification')
 
-  <div class="min-h-shell">
+  <div class="min-h-shell" layout-main>
+    @include('partials/global-notification')
     @!section('body')
   </div>
 
