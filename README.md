@@ -8,7 +8,7 @@ The application is architectured as a [majestic monolith](https://m.signalvnoise
 - It uses [AdonisJS](http://adonisjs.com/) as a backend framework to manage the routing, database and the templates layer.
 - It uses [TailwindCSS](https://tailwindcss.com/) for design.
 - [Alpine.js](https://alpinejs.dev/) for small interactive frontend widgets.
-- And [hotwire turbo drive](https://turbo.hotwired.dev/) for sleek page navigation.
+- And [unpoly](https://unpoly.com/navigation) for sleek page navigation.
 
 The codebase serves two main purposes.
 
@@ -23,7 +23,7 @@ The codebase serves two main purposes.
 - Work with [file uploads](./app/Controllers/Http/ProfileController.ts#55-60) (including validations) and AdonisJS drive.
 - Using the Edge template engine and its [components layer](./resources/views/components).
 - Using Lucid [schema migrations](./database/migrations) for creating/alterting database tables. 
-- Using Hotwire for faster page navigation.
+- Using Unpoly for faster page navigation.
 - Using Alpine.js for dialog modals, toggling notifications and interactive dropdowns.
 
 ## FAQs
