@@ -36,6 +36,7 @@
     "@adonisjs/auth": "^8.0.10",
     "@adonisjs/core": "^5.4.2",
     "@adonisjs/drive-s3": "^1.0.5",
+    "@adonisjs/http-server": "^5.11.0",
     "@adonisjs/lucid": "^16.3.2",
     "@adonisjs/lucid-slugify": "^2.1.3",
     "@adonisjs/repl": "^3.1.7",
@@ -44,11 +45,11 @@
     "@adonisjs/view": "^6.1.1",
     "luxon": "^2.2.0",
     "mime-types": "^2.1.34",
-    "pg": "^8.7.1",
     "phc-argon2": "^1.1.2",
     "proxy-addr": "^2.0.7",
     "reflect-metadata": "^0.1.13",
     "s3-sync-client": "^2.1.0",
-    "source-map-support": "^0.5.21"
+    "source-map-support": "^0.5.21",
+    "sqlite3": "^5.0.8"
   }
 }

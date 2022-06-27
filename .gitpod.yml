@@ -7,6 +7,6 @@ tasks:
       npm install
     
 ports:
-  - port: 4000
+  - port: 8080
     visibility: public
     onOpen: open-browser
