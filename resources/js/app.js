@@ -1,6 +1,6 @@
 import 'unpoly'
 import Alpine from 'alpinejs'
-import trap from '@alpinejs/trap'
+import focus from '@alpinejs/focus'
 import teleport from 'alpine-teleport'
 
 import 'unpoly/unpoly.css'
@@ -58,5 +58,5 @@ Alpine.data('notification', function (options) {
 })
 
 Alpine.plugin(teleport)
-Alpine.plugin(trap)
+Alpine.plugin(focus)
 Alpine.start()
