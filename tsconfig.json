@@ -35,7 +35,8 @@
       "@adonisjs/auth",
       "@adonisjs/lucid-slugify",
       "@adonisjs/drive-s3",
-      "@adonisjs/attachment-lite"
+      "@adonisjs/attachment-lite",
+      "@japa/preset-adonis/build/adonis-typings"
     ]
   }
 }

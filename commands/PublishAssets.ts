@@ -1,5 +1,6 @@
 import mime from 'mime-types'
-import S3SyncClient from 's3-sync-client'
+import { S3Client } from '@aws-sdk/client-s3'
+import { S3SyncClient, TransferMonitor } from 's3-sync-client'
 import { BaseCommand } from '@adonisjs/core/build/standalone'
 
 export default class PublishAssets extends BaseCommand {
@@ -32,12 +33,14 @@ export default class PublishAssets extends BaseCommand {
    */
   private getSyncClient() {
     return new S3SyncClient({
-      credentials: {
-        accessKeyId: this.application.env.get('S3_KEY'),
-        secretAccessKey: this.application.env.get('S3_SECRET'),
-      },
-      region: this.application.env.get('S3_REGION'),
-      endpoint: this.application.env.get('S3_ENDPOINT'),
+      client: new S3Client({
+        credentials: {
+          accessKeyId: this.application.env.get('S3_KEY'),
+          secretAccessKey: this.application.env.get('S3_SECRET'),
+        },
+        region: this.application.env.get('S3_REGION'),
+        endpoint: this.application.env.get('S3_ENDPOINT'),
+      }),
     })
   }
 
@@ -45,7 +48,7 @@ export default class PublishAssets extends BaseCommand {
    * Monitor transfer of assets
    */
   private monitorTransfer() {
-    const monitor = new S3SyncClient.TransferMonitor()
+    const monitor = new TransferMonitor()
     monitor.on('progress', ({ count }) => {
       this.logger.logUpdate(
         `Uploading ${this.colors.yellow(count.current)} of ${this.colors.yellow(count.total)}`
@@ -76,9 +79,11 @@ export default class PublishAssets extends BaseCommand {
       {
         monitor,
         del: true,
-        commandInput: {
-          ACL: 'public-read',
-          ContentType: (syncCommandInput) => mime.lookup(syncCommandInput.Key),
+        commandInput: (syncCommandInput) => {
+          return {
+            ACL: 'public-read',
+            ContentType: mime.lookup(syncCommandInput.Key),
+          }
         },
       }
     )
