@@ -6,6 +6,7 @@
  */
 
 import type { Config } from '@japa/runner'
+import { browserClient } from '@japa/browser-client'
 import TestUtils from '@ioc:Adonis/Core/TestUtils'
 import { assert, runFailedTests, specReporter, apiClient } from '@japa/preset-adonis'
 
@@ -20,7 +21,14 @@ import { assert, runFailedTests, specReporter, apiClient } from '@japa/preset-ad
 | Feel free to remove existing plugins or add more.
 |
 */
-export const plugins: Required<Config>['plugins'] = [assert(), runFailedTests(), apiClient()]
+export const plugins: Required<Config>['plugins'] = [
+  assert(),
+  runFailedTests(),
+  apiClient(),
+  browserClient({
+    runInSuites: ['browser'],
+  }),
+]
 
 /*
 |--------------------------------------------------------------------------
@@ -60,10 +68,10 @@ export const runnerHooks: Pick<Required<Config>, 'setup' | 'teardown'> = {
 | within ".adonisrc.json" file.
 |
 | You can use this method to configure suites. For example: Only start
-| the HTTP server when it is a functional suite.
+| the HTTP server when it is a browser suite.
 */
 export const configureSuite: Required<Config>['configureSuite'] = (suite) => {
-  if (suite.name === 'functional') {
+  if (suite.name === 'browser') {
     suite.setup(() => TestUtils.httpServer().start())
   }
 }
