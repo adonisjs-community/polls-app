@@ -1,4 +1,4 @@
-import BaseSchema from '@ioc:Adonis/Lucid/Schema'
+import { BaseSchema } from "@adonisjs/lucid/schema";
 
 export default class PollOptions extends BaseSchema {
   protected tableName = 'poll_options'

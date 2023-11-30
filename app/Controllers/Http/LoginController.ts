@@ -1,4 +1,4 @@
-import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import { HttpContext } from '@adonisjs/core/http'
 
 /**
  * Handle user login and logout requests.
@@ -7,14 +7,14 @@ export default class LoginController {
   /**
    * Show form to login
    */
-  public async create({ view }: HttpContextContract) {
+  public async create({ view }: HttpContext) {
     return view.render('pages/login')
   }
 
   /**
    * Handle login form submissions
    */
-  public async store({ request, response, auth }: HttpContextContract) {
+  public async store({ request, response, auth }: HttpContext) {
     /**
      * Attempt to login the user with the email and password. The
      * "auth.attempt" method will perform all the required
@@ -31,7 +31,7 @@ export default class LoginController {
   /**
    * Destroy user session (aka logout)
    */
-  public async destroy({ auth, response }: HttpContextContract) {
+  public async destroy({ auth, response }: HttpContext) {
     await auth.logout()
     response.redirect('/')
   }

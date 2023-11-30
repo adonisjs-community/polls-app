@@ -13,11 +13,11 @@
 |
 */
 
-import Logger from '@ioc:Adonis/Core/Logger'
-import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import HttpExceptionHandler from '@ioc:Adonis/Core/HttpExceptionHandler'
+import logger from '@adonisjs/core/services/logger'
+import { HttpContext } from '@adonisjs/core/http'
+import { ExceptionHandler } from "@adonisjs/core/http";
 
-export default class ExceptionHandler extends HttpExceptionHandler {
+export default class ExceptionHandler extends ExceptionHandler {
   protected statusPages = {
     '403': 'pages/errors/unauthorized',
     '404': 'pages/errors/not-found',
@@ -25,10 +25,10 @@ export default class ExceptionHandler extends HttpExceptionHandler {
   }
 
   constructor() {
-    super(Logger)
+    super(logger)
   }
 
-  public async handle(error: any, ctx: HttpContextContract) {
+  public async handle(error: any, ctx: HttpContext) {
     if (error.code === 'E_VALIDATION_FAILURE') {
       ctx.up.setTarget(ctx.up.getFailTarget())
     }

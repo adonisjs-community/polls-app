@@ -1,18 +1,18 @@
 import { DateTime } from 'luxon'
-import User from 'App/Models/User'
-import PollOption from 'App/Models/PollOption'
-import ColorPalette from 'App/Services/ColorPalette'
+import User from '#app/Models/User'
+import PollOption from '#app/Models/PollOption'
+import ColorPalette from '#app/Services/ColorPalette'
 import { slugify } from '@ioc:Adonis/Addons/LucidSlugify'
 
 import {
   column,
   hasMany,
-  HasMany,
   belongsTo,
-  BelongsTo,
   BaseModel,
   beforeCreate,
-} from '@ioc:Adonis/Lucid/Orm'
+} from '@adonisjs/lucid/orm'
+import { HasMany } from "@adonisjs/lucid/types/relations";
+import { BelongsTo } from "@adonisjs/lucid/types/relations";
 
 export default class Poll extends BaseModel {
   @column({ isPrimary: true })

@@ -1,20 +1,18 @@
 /*
 |--------------------------------------------------------------------------
-| Test runner entrypoint
+| Ace entry point
 |--------------------------------------------------------------------------
 |
-| The "test.ts" file is the entrypoint for running tests using Japa.
+| The "console.ts" file is the entrypoint for booting the AdonisJS
+| command-line framework and executing commands.
 |
-| Either you can run this file directly or use the "test"
-| command to run this file and monitor file changes.
+| Commands do not boot the application, unless the currently running command
+| has "options.startApp" flag set to true.
 |
 */
 
-process.env.NODE_ENV = 'test'
-
 import 'reflect-metadata'
 import { Ignitor, prettyPrintError } from '@adonisjs/core'
-import { configure, processCLIArgs, run } from '@japa/runner'
 
 /**
  * URL to the application root. AdonisJS need it to resolve
@@ -41,21 +39,8 @@ new Ignitor(APP_ROOT, { importer: IMPORTER })
     app.listen('SIGTERM', () => app.terminate())
     app.listenIf(app.managedByPm2, 'SIGINT', () => app.terminate())
   })
-  .testRunner()
-  .configure(async (app) => {
-    const { runnerHooks, ...config } = await import('../tests/bootstrap.js')
-
-    processCLIArgs(process.argv.splice(2))
-    configure({
-      ...app.rcFile.tests,
-      ...config,
-      ...{
-        setup: runnerHooks.setup,
-        teardown: runnerHooks.teardown.concat([() => app.terminate()]),
-      },
-    })
-  })
-  .run(() => run())
+  .ace()
+  .handle(process.argv.splice(2))
   .catch((error) => {
     process.exitCode = 1
     prettyPrintError(error)

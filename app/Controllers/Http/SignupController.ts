@@ -1,6 +1,6 @@
-import User from 'App/Models/User'
-import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import CreateUserValidator from 'App/Validators/CreateUserValidator'
+import User from '#app/Models/User'
+import { HttpContext } from '@adonisjs/core/http'
+import CreateUserValidator from '#app/Validators/CreateUserValidator'
 
 /**
  * Controller to handle user signup requests. We keep it simple
@@ -10,14 +10,14 @@ export default class SignupController {
   /**
    * Show form to signup
    */
-  public async create({ view }: HttpContextContract) {
+  public async create({ view }: HttpContext) {
     return view.render('pages/signup')
   }
 
   /**
    * Handle signup form submissions
    */
-  public async store({ request, response, auth }: HttpContextContract) {
+  public async store({ request, response, auth }: HttpContext) {
     /**
      * Validate new user account creation form
      */

@@ -5,11 +5,12 @@
  * file.
  */
 
-import Env from '@ioc:Adonis/Core/Env'
-import Application from '@ioc:Adonis/Core/Application'
-import { SessionConfig } from '@ioc:Adonis/Addons/Session'
+import env from '#start/env'
+import app from '@adonisjs/core/services/app'
+import { SessionConfig } from '@adonisjs/session'
+import { defineConfig } from '@adonisjs/session'
 
-const sessionConfig: SessionConfig = {
+const sessionConfig: SessionConfig = defineConfig({
   /*
   |--------------------------------------------------------------------------
   | Enable/Disable sessions
@@ -36,7 +37,7 @@ const sessionConfig: SessionConfig = {
   | Note: Switching drivers will make existing sessions invalid.
   |
   */
-  driver: Env.get('SESSION_DRIVER'),
+  driver: env.get('SESSION_DRIVER'),
 
   /*
   |--------------------------------------------------------------------------
@@ -100,7 +101,7 @@ const sessionConfig: SessionConfig = {
   |
   */
   file: {
-    location: Application.tmpPath('sessions'),
+    location: app.tmpPath('sessions'),
   },
 
   /*
@@ -113,6 +114,6 @@ const sessionConfig: SessionConfig = {
   |
   */
   redisConnection: 'local',
-}
+})
 
 export default sessionConfig

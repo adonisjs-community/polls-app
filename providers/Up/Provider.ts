@@ -1,8 +1,8 @@
-import Up from './index'
-import { ApplicationContract } from '@ioc:Adonis/Core/Application'
+import Up from './index.js'
+import { ApplicationService } from "@adonisjs/core/types";
 
 export default class AppProvider {
-  constructor(protected app: ApplicationContract) {}
+  constructor(protected app: ApplicationService) {}
 
   public async boot() {
     const HttpContext = this.app.container.resolveBinding('Adonis/Core/HttpContext')

@@ -1,7 +1,7 @@
 import mime from 'mime-types'
 import { S3Client } from '@aws-sdk/client-s3'
 import { S3SyncClient, TransferMonitor } from 's3-sync-client'
-import { BaseCommand } from '@adonisjs/core/build/standalone'
+import { BaseCommand } from "@adonisjs/core/ace";
 
 export default class PublishAssets extends BaseCommand {
   /**

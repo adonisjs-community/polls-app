@@ -1,8 +1,8 @@
-import { schema, rules } from '@ioc:Adonis/Core/Validator'
-import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import { schema, rules } from '@adonisjs/validator'
+import { HttpContext } from '@adonisjs/core/http'
 
 export default class CreateUserValidator {
-  constructor(protected ctx: HttpContextContract) {}
+  constructor(protected ctx: HttpContext) {}
 
   /*
    * Define schema to validate the "shape", "type", "formatting" and "integrity" of data.

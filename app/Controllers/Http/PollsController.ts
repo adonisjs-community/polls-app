@@ -1,9 +1,9 @@
 import { DateTime } from 'luxon'
-import Poll from 'App/Models/Poll'
-import Database from '@ioc:Adonis/Lucid/Database'
-import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import VoteOnPollValidator from 'App/Validators/VoteOnPollValidator'
-import CreatePollValidator from 'App/Validators/CreatePollValidator'
+import Poll from '#app/Models/Poll'
+import Database from '@adonisjs/lucid/services/db'
+import { HttpContext } from '@adonisjs/core/http'
+import VoteOnPollValidator from '#app/Validators/VoteOnPollValidator'
+import CreatePollValidator from '#app/Validators/CreatePollValidator'
 
 /**
  * Controller to the polls resource
@@ -13,7 +13,7 @@ export default class PollsController {
    * Show a list of all the polls. The list is filtered to show only
    * active polls (not the closed one's).
    */
-  public async index({ request, view, auth }: HttpContextContract) {
+  public async index({ request, view, auth }: HttpContext) {
     const filterBy = request.input('filter_by')
 
     /**
@@ -76,14 +76,14 @@ export default class PollsController {
   /**
    * Display the form to create a new poll
    */
-  public async create({ view }: HttpContextContract) {
+  public async create({ view }: HttpContext) {
     return view.render('pages/polls/create')
   }
 
   /**
    * Handle new poll form submission
    */
-  public async store({ request, response, auth, session }: HttpContextContract) {
+  public async store({ request, response, auth, session }: HttpContext) {
     /**
      * Validate request input
      */
@@ -128,7 +128,7 @@ export default class PollsController {
    * Route to show an indidivual poll. We also preload the poll
    * options relationship.
    */
-  public async show({ request, view, auth }: HttpContextContract) {
+  public async show({ request, view, auth }: HttpContext) {
     /**
      * Query to find a poll by slug and also preload its options and
      * the author
@@ -162,7 +162,7 @@ export default class PollsController {
   /**
    * Route to handle form submissions for voting on a poll
    */
-  public async submitVote({ request, auth, response, session }: HttpContextContract) {
+  public async submitVote({ request, auth, response, session }: HttpContext) {
     const { selectedOption } = await request.validate(VoteOnPollValidator)
 
     /**
@@ -249,7 +249,7 @@ export default class PollsController {
   /**
    * Route to delete a poll by its id
    */
-  public async destroy({ request, response, auth, session }: HttpContextContract) {
+  public async destroy({ request, response, auth, session }: HttpContext) {
     const poll = await Poll.find(request.param('id'))
 
     /**

@@ -19,41 +19,41 @@
 |
 */
 
-import Route from '@ioc:Adonis/Core/Route'
+import router from '@adonisjs/core/services/router'
 
 /**
  * All params named ":id" should be valid numbers.
  */
-Route.where('id', Route.matchers.number())
+router.where('id', router.matchers.number())
 
 /**
  * Signup, login and logout routes
  */
-Route.get('signup', 'SignupController.create').middleware('guest')
-Route.post('signup', 'SignupController.store').middleware('guest')
-Route.get('login', 'LoginController.create').middleware('guest')
-Route.post('login', 'LoginController.store').middleware('guest')
+router.get('signup', 'SignupController.create').middleware('guest')
+router.post('signup', 'SignupController.store').middleware('guest')
+router.get('login', 'LoginController.create').middleware('guest')
+router.post('login', 'LoginController.store').middleware('guest')
 
-Route.post('logout', 'LoginController.destroy').middleware('auth')
+router.post('logout', 'LoginController.destroy').middleware('auth')
 
 /**
  * Home page to list all polls
  */
-Route.get('/', 'PollsController.index')
+router.get('/', 'PollsController.index')
 
 /**
  * View self profile. "/me" is a convention to show details
  * for the currently logged-in user
  */
-Route.get('/me', 'ProfileController.index').middleware('auth')
-Route.post('/me/avatar', 'ProfileController.updateAvatar').middleware('auth')
+router.get('/me', 'ProfileController.index').middleware('auth')
+router.post('/me/avatar', 'ProfileController.updateAvatar').middleware('auth')
 
 /**
  * Polls resource management. One should be logged-in to interact
  * with polls, except viewing a poll.
  */
-Route.get('polls/create', 'PollsController.create').middleware('auth')
-Route.post('polls', 'PollsController.store').middleware('auth')
-Route.get('polls/:slug', 'PollsController.show')
-Route.post('polls/:id/vote', 'PollsController.submitVote').middleware('auth')
-Route.delete('polls/:id', 'PollsController.destroy').middleware('auth')
+router.get('polls/create', 'PollsController.create').middleware('auth')
+router.post('polls', 'PollsController.store').middleware('auth')
+router.get('polls/:slug', 'PollsController.show')
+router.post('polls/:id/vote', 'PollsController.submitVote').middleware('auth')
+router.delete('polls/:id', 'PollsController.destroy').middleware('auth')

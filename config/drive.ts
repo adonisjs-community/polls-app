@@ -5,9 +5,9 @@
  * file.
  */
 
-import Env from '@ioc:Adonis/Core/Env'
+import env from '#start/env'
 import { DriveConfig } from '@ioc:Adonis/Core/Drive'
-import Application from '@ioc:Adonis/Core/Application'
+import app from '@adonisjs/core/services/app'
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ const driveConfig: DriveConfig = {
   | the `DRIVE_DISK` environment variable.
   |
   */
-  disk: Env.get('DRIVE_DISK'),
+  disk: env.get('DRIVE_DISK'),
 
   disks: {
     /*
@@ -52,7 +52,7 @@ const driveConfig: DriveConfig = {
       | files.
       |
       */
-      root: Application.tmpPath('uploads'),
+      root: app.tmpPath('uploads'),
 
       /*
       |--------------------------------------------------------------------------
@@ -94,12 +94,12 @@ const driveConfig: DriveConfig = {
     s3: {
       driver: 's3',
       visibility: 'public',
-      cdnUrl: Env.get('S3_CDN_URL'),
-      key: Env.get('S3_KEY'),
-      secret: Env.get('S3_SECRET'),
-      region: Env.get('S3_REGION'),
-      bucket: Env.get('S3_BUCKET'),
-      endpoint: Env.get('S3_ENDPOINT'),
+      cdnUrl: env.get('S3_CDN_URL'),
+      key: env.get('S3_KEY'),
+      secret: env.get('S3_SECRET'),
+      region: env.get('S3_REGION'),
+      bucket: env.get('S3_BUCKET'),
+      endpoint: env.get('S3_ENDPOINT'),
     },
   },
 }

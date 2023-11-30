@@ -1,5 +1,5 @@
 {
-  "extends": "./node_modules/adonis-preset-ts/tsconfig",
+  "extends": "@adonisjs/tsconfig/tsconfig.app.json",
   "include": [
     "**/*"
   ],
@@ -23,20 +23,47 @@
       ],
       "Database/*": [
         "./database/*"
+      ],
+      "#controllers/*": [
+        "./app/controllers/*.js"
+      ],
+      "#exceptions/*": [
+        "./app/exceptions/*.js"
+      ],
+      "#models/*": [
+        "./app/models/*.js"
+      ],
+      "#services/*": [
+        "./app/services/*.js"
+      ],
+      "#listeners/*": [
+        "./app/listeners/*.js"
+      ],
+      "#events/*": [
+        "./app/events/*.js"
+      ],
+      "#middleware/*": [
+        "./app/middleware/*.js"
+      ],
+      "#validators/*": [
+        "./app/validators/*.js"
+      ],
+      "#start/*": [
+        "./start/*.js"
+      ],
+      "#config/*": [
+        "./config/*.js"
+      ],
+      "#app/*": [
+        "./app/*.js"
+      ],
+      "#database/*": [
+        "./database/*.js"
+      ],
+      "#contracts/*": [
+        "./contracts/*.js"
       ]
     },
-    "types": [
-      "@adonisjs/core",
-      "@adonisjs/repl",
-      "@adonisjs/session",
-      "@adonisjs/view",
-      "@adonisjs/shield",
-      "@adonisjs/lucid",
-      "@adonisjs/auth",
-      "@adonisjs/lucid-slugify",
-      "@adonisjs/drive-s3",
-      "@adonisjs/attachment-lite",
-      "@japa/preset-adonis/build/adonis-typings"
-    ]
+    "types": []
   }
 }

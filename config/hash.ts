@@ -5,8 +5,10 @@
  * file.
  */
 
-import Env from '@ioc:Adonis/Core/Env'
-import { HashConfig } from '@ioc:Adonis/Core/Hash'
+import env from '#start/env'
+import { HashConfig } from "@adonisjs/core/hash";
+import { defineConfig } from "@adonisjs/core/hash";
+import { drivers } from "@adonisjs/core/hash";
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +19,7 @@ import { HashConfig } from '@ioc:Adonis/Core/Hash'
 | defined inside `contracts` directory.
 |
 */
-const hashConfig: HashConfig = {
+const hashConfig: HashConfig = defineConfig({
   /*
   |--------------------------------------------------------------------------
   | Default hasher
@@ -27,7 +29,7 @@ const hashConfig: HashConfig = {
   | free to change the default value
   |
   */
-  default: Env.get('HASH_DRIVER', 'argon'),
+  default: env.get('HASH_DRIVER', 'argon'),
 
   list: {
     /*
@@ -43,14 +45,13 @@ const hashConfig: HashConfig = {
     | npm install phc-argon2
     |
     */
-    argon: {
-      driver: 'argon2',
+    argon: drivers.argon2({
       variant: 'id',
       iterations: 3,
       memory: 4096,
       parallelism: 1,
       saltSize: 16,
-    },
+    }),
 
     /*
     |--------------------------------------------------------------------------
@@ -65,11 +66,15 @@ const hashConfig: HashConfig = {
     | npm install phc-bcrypt
     |
     */
-    bcrypt: {
-      driver: 'bcrypt',
+    bcrypt: drivers.bcrypt({
       rounds: 10,
-    },
+    }),
   },
-}
+})
 
 export default hashConfig
+
+
+declare module '@adonisjs/core/types' {
+  export interface HashersList extends InferHashers<typeof hashConfig> { }
+}

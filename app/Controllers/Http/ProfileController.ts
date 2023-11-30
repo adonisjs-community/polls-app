@@ -1,6 +1,6 @@
 import { Attachment } from '@ioc:Adonis/Addons/AttachmentLite'
-import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import UpdateUserAvatarValidator from 'App/Validators/UpdateUserAvatarValidator'
+import { HttpContext } from '@adonisjs/core/http'
+import UpdateUserAvatarValidator from '#app/Validators/UpdateUserAvatarValidator'
 
 /**
  * Profile controller for the currently logged in user.
@@ -9,7 +9,7 @@ export default class ProfileController {
   /**
    * Action to show the user dashboard.
    */
-  public async index({ request, auth, view }: HttpContextContract) {
+  public async index({ request, auth, view }: HttpContext) {
     /**
      * Get the pagination page number and make sure it is a valid number. If
      * not a valid number, we fallback to 1.
@@ -48,7 +48,7 @@ export default class ProfileController {
   /**
    * Update user avatar
    */
-  public async updateAvatar({ request, auth, session, response }: HttpContextContract) {
+  public async updateAvatar({ request, auth, session, response }: HttpContext) {
     /**
      * Validate request
      */

@@ -1,4 +1,4 @@
-import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import { HttpContext } from '@adonisjs/core/http'
 
 /**
  * A list of supported unpoly headers
@@ -69,7 +69,7 @@ export default class Up {
     })
   }
 
-  constructor(private ctx: HttpContextContract) {}
+  constructor(private ctx: HttpContext) {}
 
   /**
    * Commit response

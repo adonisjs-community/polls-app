@@ -1,4 +1,4 @@
-import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import { HttpContext } from '@adonisjs/core/http'
 
 /**
  * A middleware to redirect logged in users to the home page. Mainly
@@ -6,7 +6,7 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
  * "login" pages.
  */
 export default class Guest {
-  public async handle({ auth, response }: HttpContextContract, next: () => Promise<void>) {
+  public async handle({ auth, response }: HttpContext, next: () => Promise<void>) {
     if (auth.isLoggedIn) {
       response.redirect('/')
       return

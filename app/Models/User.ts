@@ -1,20 +1,20 @@
 import { DateTime } from 'luxon'
-import Poll from 'App/Models/Poll'
-import Hash from '@ioc:Adonis/Core/Hash'
+import Poll from '#app/Models/Poll'
+import hash from '@adonisjs/core/services/hash'
 import Drive from '@ioc:Adonis/Core/Drive'
-import ColorPalette from 'App/Services/ColorPalette'
+import ColorPalette from '#app/Services/ColorPalette'
 import { attachment, AttachmentContract } from '@ioc:Adonis/Addons/AttachmentLite'
 
 import {
   column,
   beforeSave,
   BaseModel,
-  HasMany,
   hasMany,
   manyToMany,
-  ManyToMany,
   beforeCreate,
-} from '@ioc:Adonis/Lucid/Orm'
+} from '@adonisjs/lucid/orm'
+import { HasMany } from "@adonisjs/lucid/types/relations";
+import { ManyToMany } from "@adonisjs/lucid/types/relations";
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -61,7 +61,7 @@ export default class User extends BaseModel {
   @beforeSave()
   public static async hashPassword(user: User) {
     if (user.$dirty.password) {
-      user.password = await Hash.make(user.password)
+      user.password = await hash.make(user.password)
     }
   }
 
